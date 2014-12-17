@@ -2,7 +2,7 @@
 \alias{bioacoustica.listTaxa}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Function to list taxa present on BioAcoustica
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

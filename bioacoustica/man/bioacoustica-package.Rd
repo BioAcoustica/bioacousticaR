@@ -3,12 +3,10 @@
 \alias{bioacoustica}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+Package to enable the querying of BioAcoustica from within R.
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+Request metadata and audio recordings from BioAcoustica’s online collection of annotated wildlife sounds (http://bio.acousti/ca).
 }
 \details{
 \tabular{ll}{
@@ -16,26 +14,20 @@ Package: \tab bioacoustica\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
 Date: \tab 2014-12-17\cr
-License: \tab What license is it under?\cr
+License: \tab GPL-2\cr
 }
-~~ An overview of how to use the package, including the most important functions ~~
+\link{bioacoustica.getAnnotations} is used to request a filtered list of annotations.
 }
 \author{
-Who wrote it
+Ed Baker
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Maintainer: Ed Baker <ed@ebaker.me.uk>
 }
 \references{
-~~ Literature or other references for background information ~~
-}
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R ~~
-~~ documentation directory ~~
-\keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+http://bio.acousti.ca/R
 }
 \examples{
-~~ simple examples of the most important functions ~~
+\dontrun{
+  wing <- bioacoustica.getAnnotations(taxon=“Heteropteryx dilatata”, type=“Threat Response”);
+}
 }

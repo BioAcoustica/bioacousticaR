@@ -2,7 +2,7 @@
 \alias{bioacoustica.listTypes}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Function listing allowed annotation types from BioAcoustica
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

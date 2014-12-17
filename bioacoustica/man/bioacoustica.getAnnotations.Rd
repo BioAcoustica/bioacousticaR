@@ -2,7 +2,7 @@
 \alias{bioacoustica.getAnnotations}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Function to request annotated sections of recordings from BioAcoustica
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
