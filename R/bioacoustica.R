@@ -25,7 +25,7 @@ bioacoustica.getAnnotations <- function(taxon=NULL, type=NULL, skipcheck=FALSE) 
   } else {
     if (skipcheck == TRUE || sum(sapply(bioacoustica.listTaxa(), match, taxon, nomatch=0)) == 1) {
       taxon <- sub(" ", "+", taxon);
-      taxon <- paste("?name=", taxon, sep="");
+      taxon <- paste0("?name=", taxon);
     } else {
       stop(paste(taxon, "is not a known taxon"));    
     }
@@ -36,13 +36,13 @@ bioacoustica.getAnnotations <- function(taxon=NULL, type=NULL, skipcheck=FALSE) 
   } else {
     if (skipcheck == TRUE || sum(sapply(bioacoustica.listTypes(), match, type, nomatch=0)) == 1) {
       type <- sub(" ", "+", type);
-      type <- paste("&name_1=", type, sep="");
+      type <- paste0("&name_1=", type);
     } else {
       stop(paste(type, "is not a valid annotation type"));
     }
   }
   
-  path <- paste("R/annotations", taxon, type, sep="");
+  path <- paste0("R/annotations", taxon, type);
   annotations <- bioacoustica.call(path);
   return (annotations);
 }
@@ -53,25 +53,23 @@ bioacoustica.getRecordings <- function(taxon=NULL, children=FALSE, skipcheck=FAL
   } else {
     if (skipcheck == TRUE || sum(sapply(bioacoustica.listTaxa(), match, taxon, nomatch=0)) == 1) {
       taxon <- sub(" ", "+", taxon);
-      taxon <- paste("?name=", taxon, sep="");
+      taxon <- paste0("?name=", taxon);
     } else {
       #TO DO: check it's in the list
       stop(paste(taxon, "is not a known taxon"));    
     }
   }
   if(!children) {
-    path <- paste("R/recordings", taxon, sep="");
+    path <- paste0("R/recordings", taxon);
     annotations <- bioacoustica.call(path);
   } else {
     #TODO:Get taxon ID
     tid <- 262;
-    path <- paste("R/recordings/depth/", tid, sep="");
+    path <- paste0("R/recordings/depth/", tid);
     annotations <- bioacoustica.call(path);
   }
   return (annotations);
 }
-
-
 
 bioacoustica.getAnnotationFiles <- function(df) {
   vector <- vector(mode="list", 1);
