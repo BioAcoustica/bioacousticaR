@@ -1,14 +1,21 @@
-library(RCurl);
+bioacoustica.getHandle <- function() {
+  return (list(url = "http://bio.acousti.ca"));
+}
+
+bioacoustica.call <- function(path) {
+  download <- drupalr.get(bioacoustica.getHandle(), path, userAgent = "BioAcousticaR");
+  return (read.csv(text = content(download,as="text")));
+}
 
 bioacoustica.listTypes <- function() {
-  url <- "http://bio.acousti.ca/R/types";
-  types <- bioacoustica.call(url);
+  path <- "R/types";
+  types <- bioacoustica.call(path);
   return (types);
 }
 
 bioacoustica.listTaxa <- function() {
-  url <- "http://bio.acousti.ca/R/taxa";
-  taxa <- bioacoustica.call(url);
+  path <- "R/taxa";
+  taxa <- bioacoustica.call(path);
   return (taxa);
 }
 
@@ -35,8 +42,8 @@ bioacoustica.getAnnotations <- function(taxon=NULL, type=NULL, skipcheck=FALSE) 
     }
   }
   
-  url <- paste("http://bio.acousti.ca/R/annotations", taxon, type, sep="");
-  annotations <- bioacoustica.call(url);
+  path <- paste("R/annotations", taxon, type, sep="");
+  annotations <- bioacoustica.call(path);
   return (annotations);
 }
 
@@ -53,22 +60,18 @@ bioacoustica.getRecordings <- function(taxon=NULL, children=FALSE, skipcheck=FAL
     }
   }
   if(!children) {
-    url <- paste("http://bio.acousti.ca/R/recordings", taxon, sep="");
-    annotations <- bioacoustica.call(url);
+    path <- paste("R/recordings", taxon, sep="");
+    annotations <- bioacoustica.call(path);
   } else {
     #TODO:Get taxon ID
     tid <- 262;
-    url <- paste("http://bio.acousti.ca/R/recordings/depth/", tid, sep="");
-    annotations <- bioacoustica.call(url);
+    path <- paste("R/recordings/depth/", tid, sep="");
+    annotations <- bioacoustica.call(path);
   }
   return (annotations);
 }
 
-bioacoustica.call <- function(url) {
-  download <- getURL(url, useragent="bioacousticaR");
-  content <- read.csv(text = download);
-  return(content);
-}
+
 
 bioacoustica.getAnnotationFiles <- function(df) {
   vector <- vector(mode="list", 1);
