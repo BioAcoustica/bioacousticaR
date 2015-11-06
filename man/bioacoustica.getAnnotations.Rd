@@ -2,10 +2,10 @@
 \alias{bioacoustica.getAnnotations}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Function to request annotated sections of recordings from BioAcoustica
+Function to request annotated sections of recordings from BioAcoustica.
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function is used to get annotation information form the BioAcoustica database, based on the taxon fetaured in the annotated section and the type of annotation. By default this function performs checks that the requested taxa and types are valid, for faster operation the checks can be skipped.
 }
 \usage{
 bioacoustica.getAnnotations(taxon = NULL, type = NULL, skipcheck = FALSE)
