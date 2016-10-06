@@ -8,13 +8,13 @@ bioacoustica.call <- function(path) {
 }
 
 bioacoustica.listTypes <- function() {
-  path <- "R/types";
+  path <- "/R/types";
   types <- bioacoustica.call(path);
   return (types);
 }
 
 bioacoustica.listTaxa <- function() {
-  path <- "R/taxa";
+  path <- "/R/taxa";
   taxa <- bioacoustica.call(path);
   return (taxa);
 }
