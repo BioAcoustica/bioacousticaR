@@ -4,7 +4,7 @@ bioacoustica.getHandle <- function() {
 
 bioacoustica.call <- function(path) {
   download <- drupalr.get(bioacoustica.getHandle(), path);
-  return (read.csv(text = content(download,as="text")));
+  return (read.csv(text = download));
 }
 
 bioacoustica.listTypes <- function() {
