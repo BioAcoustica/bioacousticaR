@@ -60,12 +60,12 @@ bioacoustica.getRecordings <- function(taxon=NULL, children=FALSE, skipcheck=FAL
     }
   }
   if(!children) {
-    path <- paste0("R/recordings", taxon);
+    path <- paste0("/R/recordings", taxon);
     annotations <- bioacoustica.call(path);
   } else {
     #TODO:Get taxon ID
     tid <- 262;
-    path <- paste0("R/recordings/depth/", tid);
+    path <- paste0("/R/recordings/depth/", tid);
     annotations <- bioacoustica.call(path);
   }
   return (annotations);
