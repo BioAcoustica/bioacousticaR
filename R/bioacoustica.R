@@ -19,6 +19,12 @@ bioacoustica.listTaxa <- function() {
   return (taxa);
 }
 
+bioacoustica.listCollections <- function() {
+  path <- "/R/collections";
+  collections <- bioacoustica.call(path);
+  return (collections);
+}
+
 bioacoustica.getAnnotations <- function(taxon=NULL, type=NULL, skipcheck=FALSE) {
   if (is.null(taxon)) {
     taxon <- "?name=";
