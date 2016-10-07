@@ -1,9 +1,9 @@
 Package: bioacoustica
 Type: Package
-Title: What the package does (short line)
+Title: Provides access to the BioAcoustica platform through R
 Version: 1.0
 Date: 2014-12-17
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
+Author: Ed Baker
+Maintainer: Ed Baker <edward.baker@nhm.ac.uk>
 Description: More about what it does (maybe more than one line)
 License: What license is it under?
