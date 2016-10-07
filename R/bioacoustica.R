@@ -55,24 +55,23 @@ bioacoustica.getAnnotations <- function(taxon=NULL, type=NULL, skipcheck=FALSE) 
 
 bioacoustica.getRecordings <- function(taxon=NULL, children=FALSE, skipcheck=FALSE) {
   if (is.null(taxon)) {
-    taxon <- "?name=";
+    taxon <- "";
   } else {
     if (skipcheck == TRUE || sum(sapply(bioacoustica.listTaxa(), match, taxon, nomatch=0)) == 1) {
       taxon <- sub(" ", "+", taxon);
-      taxon <- paste0("?name=", taxon);
     } else {
       #TO DO: check it's in the list
       stop(paste(taxon, "is not a known taxon"));    
     }
   }
   if(!children) {
-    path <- paste0("/R/recordings", taxon);
-    annotations <- bioacoustica.call(path);
+    path <- paste0("/R/recordings/", taxon);
+    recordings <- bioacoustica.call(path);
   } else {
     #TODO:Get taxon ID
     tid <- 262;
     path <- paste0("/R/recordings/depth/", tid);
-    annotations <- bioacoustica.call(path);
+    recordings <- bioacoustica.call(path);
   }
   return (annotations);
 }
