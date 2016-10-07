@@ -87,3 +87,24 @@ bioacoustica.getAnnotationFiles <- function(df) {
 bioacoustica.getWaveFile <- function(url, start=NULL, end = NULL) {
   
 }
+
+bioacoustica.postComment <- function(path, body, c) {
+  extra_pars = list(
+    'field_type[und]' = '_none',
+    'field_taxonomic_name[und]' = '',
+    'field_start_time[und][0][value]' = '',
+    'field_end_time[und][0][value]' = ''
+  );
+  drupalr.postComment(bioacoustica.getHandle(), path, body, extra_pars, c)
+}
+
+bioacoustica.postAnnotation <- function(path, type, taxon, start, end, c) {
+  type_id <- as.character(subset(bioacoustica.listTypes(), Type==type, select=Term.ID)[1,])
+  extra_pars = list(
+    'field_type[und]' = type_id,
+    'field_taxonomic_name[und]' = taxon,
+    'field_start_time[und][0][value]' = start,
+    'field_end_time[und][0][value]' = end
+  );
+  drupalr.postComment(bioacoustica.getHandle(), path, '', extra_pars, c);
+}
