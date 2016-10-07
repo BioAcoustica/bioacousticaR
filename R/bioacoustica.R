@@ -53,7 +53,7 @@ bioacoustica.getAnnotations <- function(taxon=NULL, type=NULL, skipcheck=FALSE) 
   return (annotations);
 }
 
-bioacoustica.listRecordings <- function(taxon=NULL, children=FALSE, skipcheck=FALSE) {
+bioacoustica.listRecordings <- function(taxon=NULL, children=FALSE, skipcheck=TRUE) {
   if (is.null(taxon)) {
     taxon <- "";
   } else {
