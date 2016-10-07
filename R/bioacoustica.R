@@ -3,6 +3,7 @@ bioacoustica.getHandle <- function() {
 }
 
 bioacoustica.call <- function(path) {
+  message(paste0(bioacoustica.getHandle(), path));
   download <- drupalr.get(bioacoustica.getHandle(), path);
   return (read.csv(text = download));
 }
