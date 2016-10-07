@@ -71,7 +71,7 @@ bioacoustica.listRecordings <- function(taxon=NULL, children=FALSE, skipcheck=TR
   } else {
     #TODO:Get taxon ID
     tid <- 262;
-    path <- paste0("/R/recordings/depth/", tid);
+    path <- paste0("/R/recordings-depth/", tid);
     recordings <- bioacoustica.call(path);
   }
   return (recordings);
