@@ -54,25 +54,18 @@ bioacoustica.getAnnotations <- function(taxon=NULL, type=NULL, skipcheck=FALSE) 
   return (annotations);
 }
 
-bioacoustica.listRecordings <- function(taxon=NULL, children=FALSE, skipcheck=TRUE) {
+bioacoustica.listRecordings <- function(taxon=NULL, children=FALSE) {
   if (is.null(taxon)) {
     taxon <- "";
   } else {
-    if (skipcheck == TRUE || sum(sapply(bioacoustica.listTaxa(), match, taxon, nomatch=0)) == 1) {
-      taxon <- sub(" ", "+", taxon);
-    } else {
-      #TO DO: check it's in the list
-      stop(paste(taxon, "is not a known taxon"));    
-    }
+    taxon <- sub(" ", "+", taxon)
   }
   if(!children) {
     path <- paste0("/R/recordings/", taxon);
-    recordings <- bioacoustica.call(path);
   } else {
     path <- paste0("/R/recordings-depth/", taxon);
-    recordings <- bioacoustica.call(path);
   }
-  return (recordings);
+  return (bioacoustica.call(path));
 }
 
 bioacoustica.getAnnotationFiles <- function(df) {
