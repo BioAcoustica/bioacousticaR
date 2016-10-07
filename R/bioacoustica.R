@@ -73,7 +73,7 @@ bioacoustica.getRecordings <- function(taxon=NULL, children=FALSE, skipcheck=FAL
     path <- paste0("/R/recordings/depth/", tid);
     recordings <- bioacoustica.call(path);
   }
-  return (annotations);
+  return (recordings);
 }
 
 bioacoustica.getAnnotationFiles <- function(df) {
