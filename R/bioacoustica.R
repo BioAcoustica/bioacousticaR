@@ -2,6 +2,10 @@ bioacoustica.getHandle <- function() {
   return (list(url = "http://bio.acousti.ca"));
 }
 
+bioacoustica.authenticate <- function(username, password) {
+  return(drupalr.authenticate(bioacoustica.getHandle(), username, password));  
+}
+
 bioacoustica.call <- function(path) {
   message(paste0(bioacoustica.getHandle(), path));
   download <- drupalr.get(bioacoustica.getHandle(), path);
