@@ -117,5 +117,5 @@ bioacoustica.postFile <- function(upfile, c) {
   pars = list(
     'files[upload]' = fileUpload(filename=upfile)
   );
-  drupalr.postForm(bioacoustica.getHandle(), "/file/add", "file_entity_add_upload", pars, c)
+  drupalr.postForm(bioacoustica.getHandle(), "/file/add", "file_entity_add_upload", pars, c);
 }
