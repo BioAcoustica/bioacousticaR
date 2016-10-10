@@ -112,3 +112,10 @@ bioacoustica.postAnnotation <- function(path, type, taxon, start, end, c) {
   );
   drupalr.postComment(bioacoustica.getHandle(), path, '', extra_pars, c);
 }
+
+bioacoustica.postFile <- function(upfile, c) {
+  pars = list(
+    'files[upload]' = fileUpload(filename=upfile)
+  );
+  drupalr.postForm(bioacoustica.getHandle(), "/file/add", pars, c)
+}
