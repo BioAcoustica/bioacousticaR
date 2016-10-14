@@ -31,29 +31,7 @@ bioacoustica.listCollections <- function() {
 }
 
 bioacoustica.getAnnotations <- function(taxon=NULL, type=NULL, skipcheck=FALSE) {
-  if (is.null(taxon)) {
-    taxon <- "?name=";
-  } else {
-    if (skipcheck == TRUE || sum(sapply(bioacoustica.listTaxa(), match, taxon, nomatch=0)) == 1) {
-      taxon <- sub(" ", "+", taxon);
-      taxon <- paste0("?name=", taxon);
-    } else {
-      stop(paste(taxon, "is not a known taxon"));    
-    }
-  }
-  
-  if (is.null(type)) {
-    type <- "&name_1=";
-  } else {
-    if (skipcheck == TRUE || sum(sapply(bioacoustica.listTypes(), match, type, nomatch=0)) == 1) {
-      type <- sub(" ", "+", type);
-      type <- paste0("&name_1=", type);
-    } else {
-      stop(paste(type, "is not a valid annotation type"));
-    }
-  }
-  
-  path <- paste0("/R/annotations", taxon, type);
+  path <- "/R/annotations";
   annotations <- bioacoustica.call(path);
   return (annotations);
 }
