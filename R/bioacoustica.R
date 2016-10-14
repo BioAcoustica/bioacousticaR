@@ -53,7 +53,7 @@ bioacoustica.getAnnotations <- function(taxon=NULL, type=NULL, skipcheck=FALSE) 
     }
   }
   
-  path <- paste0("R/annotations", taxon, type);
+  path <- paste0("/R/annotations", taxon, type);
   annotations <- bioacoustica.call(path);
   return (annotations);
 }
