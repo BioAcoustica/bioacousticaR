@@ -97,3 +97,12 @@ bioacoustica.postFile <- function(upfile, c) {
   );
   drupalr.postForm(bioacoustica.getHandle(), "/file/add", "file_entity_add_upload", pars, c);
 }
+
+
+bioacoustica.mkdir <- function(name) {
+  if (file.exists(name)){
+    message(paste0("directory could not be created: ",name))
+  } else {
+    dir.create(file.path(name))
+  }
+}
