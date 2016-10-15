@@ -14,3 +14,6 @@ Depends:
   foreach,
   tuneR,
   seewave
+Collate:
+  bioacoustica.R,
+  demo.R
