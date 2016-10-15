@@ -7,3 +7,10 @@ Author: Ed Baker
 Maintainer: Ed Baker <edward.baker@nhm.ac.uk>
 Description: More about what it does (maybe more than one line)
 License: What license is it under?
+Depends:
+  RCurl
+  DrupalR
+  xml2
+  foreach
+  tuneR
+  seewave
