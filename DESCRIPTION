@@ -16,4 +16,4 @@ Depends:
   seewave
 Collate:
   bioacoustica.R,
-  demo.R
+  demoData.R
