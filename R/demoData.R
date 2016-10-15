@@ -5,6 +5,10 @@ bioacoustica.britishOrthoptera <- list(
   ),
   tettigonia.viridissima = list(
     202
+  ),
+  decticus.verrucivorus = list(
+    204,
+    205
   )
 );
 
