@@ -12,10 +12,13 @@ bioacoustica.downloadDemoData <- function(demo) {
   foreach(i=1:length(demo)) %do% bioacoustica.downloadDemoDatum(demo[i])
 }
 
-bioacoustica.downloadDemoDatum <- function(datum) {
-  bioacoustica.mkdir(names(datum));
+bioacoustica.downloadDemoDatum <- function(datum, sep_dirs=TRUE) {
+  if (sep_dirs==TRUE) {
+    bioacoustica.mkdir(names(datum));
+  }
   setwd(paste0("./",names(datum)))
   foreach(i=1:length(datum[[1]])) %do% bioacoustica.getAnnotationFile(as.numeric(datum[[1]][i]))
-  message(datum[i])
-  setwd("./..")
+  if (sep_dirs==TRUE) {
+    setwd("./..")
+  }
 }
