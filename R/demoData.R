@@ -23,6 +23,7 @@ bioacoustica.downloadDemoData <- function(demo) {
   bioacoustica.mkdir("data")
   setwd("./data")
   foreach(i=1:length(demo)) %do% bioacoustica.downloadDemoDatum(demo[i])
+  setwd("./..")
 }
 
 bioacoustica.downloadDemoDatum <- function(datum, sep_dirs=TRUE) {
@@ -34,5 +35,4 @@ bioacoustica.downloadDemoDatum <- function(datum, sep_dirs=TRUE) {
   if (sep_dirs==TRUE) {
     setwd("./..")
   }
-  setwd("./..")
 }
