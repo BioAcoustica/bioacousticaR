@@ -25,7 +25,7 @@ bioacoustica.voiceDataData <- list(
       "Leisure Bay. Recording number 1."
     ),
     c(
-      109
+      109,
       "14th December. Recording number 3 on the way to Kruger." 
     ),
     c(
