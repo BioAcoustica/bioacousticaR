@@ -1,4 +1,8 @@
-bioacoustica.britishOrthoptera <- list(
+bioacoustica.voiceData() <- function {
+
+}
+
+bioacoustica.voiceDataData <- list(
   price = list(
     c(
       235, 
@@ -41,16 +45,49 @@ bioacoustica.britishOrthoptera <- list(
     )
   );
   bmnh = list(
-    c(210),
-    c(208),
-    c(206),
-    c(196),
-    c(130),
-    c(128),
-    c(117),
-    c(52),
-    c(61),
-    c(41),
-    c(26)
+    c(
+      210,
+      ""
+    ),
+    c(
+      208,
+      ""
+    ),
+    c(
+      206,
+      ""
+    ),
+    c(
+      196,
+      ""
+    ),
+    c(
+      130,
+      ""
+     ),
+    c(
+      128,
+      ""
+     ),
+    c(
+      117,
+      ""
+     ),
+    c(
+      52,
+      ""
+     ),
+    c(
+      61,
+      ""
+     ),
+    c(
+      41,
+      ""
+     ),
+    c(
+      26,
+      ""
+     )
   );
 );
