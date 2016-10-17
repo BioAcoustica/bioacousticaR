@@ -1,6 +1,7 @@
 bioacoustica.voiceData <- function() {
   d <- t(as.data.frame.list(bioacoustica.voiceDataData))
   colnames(d) <- bioacoustica.voiceDataColumns
+  rownames(d) <- NULL
   return(d)
 }
 
