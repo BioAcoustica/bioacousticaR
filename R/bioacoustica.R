@@ -50,16 +50,22 @@ bioacoustica.listRecordings <- function(taxon=NULL, children=FALSE) {
   return (bioacoustica.call(path));
 }
 
+
 bioacoustica.getAnnotationFile <- function(annotation_id, c) {
   a <- bioacoustica.getAnnotations(c);
-  file <- as.character(subset(a, id==202,select="file")[1,1]);
+  file <- as.character(subset(a, 
+                              id==annotation_id,
+                              select="file")[1,1]);
   parts <- strsplit(file, "/");
   filename <- parts[[1]][7];
   #TODO: CHange to CURL
   download.file(file, destfile=filename);
-    long <- readWave(filename);
-    f <- long@samp.rate;
-    wave <- cutw(long, f=f, from=subset(a, id==202,select="start")[1,1], to=subset(a, id==202,select="end")[1,1], method="Wave");
+  long <- readWave(filename);
+  f <- long@samp.rate;
+  wave <- cutw(long, f=f, from=subset(a, id==annotation_id,
+                          select="start")[1,1], 
+                          to=subset(a, id==annotation_id,select="end")[1,1],
+                          method="Wave");
   file.remove(filename);
   nf <- paste0(filename,".",annotation_id,".wav");
   savewav(wave, f=f, file=nf);
