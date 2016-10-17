@@ -44,7 +44,7 @@ bioacoustica.voiceDataData <- list(
       72,
       "14th December. On the way to Kruger. Recording number 2."
     )
-  );
+  ),
   bmnh = list(
     c(
       210,
@@ -90,5 +90,5 @@ bioacoustica.voiceDataData <- list(
       26,
       ""
      )
-  );
+  )
 );
