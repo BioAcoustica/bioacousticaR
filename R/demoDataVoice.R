@@ -1,4 +1,4 @@
-bioacoustica.voiceData() <- function {
+bioacoustica.voiceData() <- function() {
 
 }
 
