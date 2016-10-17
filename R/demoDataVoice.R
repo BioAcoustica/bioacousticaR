@@ -1,5 +1,5 @@
 bioacoustica.voiceData() <- function() {
-
+  return(1)
 }
 
 bioacoustica.voiceDataData <- list(
