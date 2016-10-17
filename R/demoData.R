@@ -1,4 +1,3 @@
-
 bioacoustica.downloadDemoData <- function(demo) {
   bioacoustica.mkdir("data")
   setwd("./data")
