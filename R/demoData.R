@@ -16,7 +16,32 @@ bioacoustica.britishOrthoptera <- list(
   ),
   platycleis.albopunctata = list(
     211
-  )
+  ),
+  metrioptera.brachyptera = list(
+    213,
+    218
+  ),
+  roeseliana.roeselii = list(
+    220,
+    222
+  ),
+  conocephalus.fuscus = list(
+    224,
+    225
+  ),
+  conocephalus.dorsalis = list(
+    227
+  ),
+  gryllus.campestris = list(
+    229
+  ),
+  nemobius.sylvestris = list(
+    231
+  ),
+  gryllotalpa.gryllotalpa = list(
+    232,
+    46,
+    233
 );
 
 bioacoustica.downloadDemoData <- function(demo) {
