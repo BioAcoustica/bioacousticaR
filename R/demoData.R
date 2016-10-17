@@ -42,6 +42,7 @@ bioacoustica.britishOrthoptera <- list(
     232,
     46,
     233
+  )
 );
 
 bioacoustica.downloadDemoData <- function(demo) {
