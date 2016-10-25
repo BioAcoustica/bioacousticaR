@@ -1,42 +1,3 @@
-rm(list=ls())
-library(RCurl)
-library(data.table)
-library(DrupalR)
-
-#' @param url the root url for bioacoustica
-getHandle <- function(url="http://bio.acousti.ca"){
-  return(list(url))
-}
-
-authenticate <- function(username, password) {
-  return(drupalr.authenticate(getHandle(), username, password));  
-}
-
-fetchView <- function(path, verbose=F) {
-  if(verbose)
-    message(paste0(getHandle(), path));
-  download_str <- drupalr.get(getHandle(), path);
-  return (fread(download_str));
-}
-
-# bioacoustica.listTypes <- function() {
-#   path <- "/R/types";
-#   types <- bioacoustica.call(path);
-#   return (types);
-# }
-# 
-# bioacoustica.listTaxa <- function() {
-#   path <- "/R/taxa";
-#   taxa <- bioacoustica.call(path);
-#   return (taxa);
-# }
-# 
-# bioacoustica.listCollections <- function() {
-#   path <- "/R/collections";
-#   collections <- bioacoustica.call(path);
-#   return (collections);
-# }
-
 #' Dowload a list of all annotations 
 #' 
 #' Download the information corresponding 
@@ -51,23 +12,8 @@ getAllAnnotationData <- function(path = "/R/annotations") {
   fetchView(path);
 }
 
-#' To download a partial binary file (see `curl -r`)
-downloadBinRange <- function(connection, start_byte, end_byte, 
-                             n_retry = 5){
-  # this way we can fecth only a part of a binary file
-  for(i in 1:n_retry){
-    opts <- curlOptions(range = paste(start_byte, end_byte,sep="-"))
-    raw <- getBinaryURL(connection, .opts = opts)
-    expected_length <- end_byte - start_byte + 1
-  
-    if(expected_length == length(raw))
-      return(raw)
-    warning(paste("Failed to retreive", connection, ". Retrying..."))
-  }
-  stop(paste("Did not manage to fetch", connection, "!"))
-}
 
-#' Fetch the portion of a remote wav file
+#' Fetch a portion of a remote wav file
 #' 
 #' This function can download only a portion of a wave file
 #' stored online and store it locally as a new wave file.
@@ -135,8 +81,8 @@ getAnnotationFile <- function(file,
   duration <- length(wav@left)/ wav@samp.rate
   if(abs((end - start) - duration) > 0.5)
     stop(sprintf("Error whilst reading wav, resulting wav
-           does not have expected duration.
-            Expected = %f. real = %f",end-start,duration ))
+                 does not have expected duration.
+                 Expected = %f. real = %f",end-start,duration ))
   
   # here we fix the wave metadata by rewriting it
   writeWave(wav, dst)
@@ -155,13 +101,14 @@ getAnnotationFile <- function(file,
 #' @details \code{query} must contain the columns \code{id},
 #' \code{start}, \code{end}, \code{file}. They indicate, the annotation uid
 #' , the start and end of the wav file, and the url of the wav file, respactively.
-#' Typically, it will be obtained through \code{\link{getAllAnnoationData}}.
-#' @seealso \code{\link{getAllAnnoationData}}
+#' Typically, it will be obtained through \code{\link{getAllAnnotationData}}.
+#' @seealso \code{\link{getAllAnnotationData}}
 #' @examples
 #' \dontrun{
 #' all_annotations = getAllAnnotationData()
 #' query = all_annotations[author=="qgeissmann"]
-#' dowloadFilesForAnnotations(query, dst_dir = "/tmp/my_annotation")
+#' my_annotations <- dowloadFilesForAnnotations(query, 
+#'                                dst_dir = "/tmp/my_annotation")
 #' }
 #' @export
 dowloadFilesForAnnotations <- function(query, 
@@ -175,46 +122,8 @@ dowloadFilesForAnnotations <- function(query,
   q[, end := as.numeric(end)]
   annotation_file_map <- q[, 
                            .(annotation_path = getAnnotationFile(file, start, end, dst=dst)), 
-                             by=id]
+                           by=id]
   setkeyv(q, "id")
   setkeyv(annotation_file_map, "id")
   q[annotation_file_map]
 }
-
-# 
-# bioacoustica.postComment <- function(path, body, c) {
-#   extra_pars = list(
-#     'field_type[und]' = '_none',
-#     'field_taxonomic_name[und]' = '',
-#     'field_start_time[und][0][value]' = '',
-#     'field_end_time[und][0][value]' = ''
-#   );
-#   drupalr.postComment(bioacoustica.getHandle(), path, body, extra_pars, c)
-# }
-# 
-# bioacoustica.postAnnotation <- function(path, type, taxon, start, end, c) {
-#   type_id <- as.character(subset(bioacoustica.listTypes(), Type==type, select=Term.ID)[1,])
-#   extra_pars = list(
-#     'field_type[und]' = type_id,
-#     'field_taxonomic_name[und]' = taxon,
-#     'field_start_time[und][0][value]' = start,
-#     'field_end_time[und][0][value]' = end
-#   );
-#   drupalr.postComment(bioacoustica.getHandle(), path, '', extra_pars, c);
-# }
-# 
-# bioacoustica.postFile <- function(upfile, c) {
-#   pars = list(
-#     'files[upload]' = fileUpload(filename=upfile)
-#   );
-#   drupalr.postForm(bioacoustica.getHandle(), "/file/add", "file_entity_add_upload", pars, c);
-# }
-# 
-# 
-# bioacoustica.mkdir <- function(name) {
-#   if (file.exists(name)){
-#     message(paste0("directory could not be created: ",name))
-#   } else {
-#     dir.create(file.path(name))
-#   }
-# }
