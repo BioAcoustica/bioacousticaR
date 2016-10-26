@@ -8,6 +8,7 @@
 #' unique identifier of an annotation. \code{start} and \code{end} identify the
 #' section of this annotation and \code{file} maps the URL of the raw audio file.
 #' Other annotation data are available as extra columns.
+#' @export
 getAllAnnotationData <- function(path = "/R/annotations") {
   fetchView(path);
 }
@@ -20,7 +21,7 @@ getAllAnnotationData <- function(path = "/R/annotations") {
 #' It proceeds by dowloading metadata, uses them to locate the file chunk
 #' and reconstitute a file
 #' 
-#' @param file, the URL of a file
+#' @param file the URL of a file
 #' @param start the start of the desired section, in second
 #' @param end the end of the desired section, in second
 #' @param dst a character vector indicating where to save the resulting file

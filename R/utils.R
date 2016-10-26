@@ -1,8 +1,8 @@
-#' pass
-#'
-#' ss
-#' 
-#' @param url the root url for bioacoustica
+# pass
+#
+# ss
+# 
+# @param url the root url for bioacoustica
 getHandle <- function(url="http://bio.acousti.ca"){
   return(list(url))
 }
@@ -18,15 +18,15 @@ fetchView <- function(path, verbose=F) {
   return (fread(download_str));
 }
 
-#' To download a partial binary file (see `curl -r`)
-#' 
-#' Utility to save server and client resource by downloading only 
-#' segment of files.
-#' 
-#' @param connection the url to a binary object
-#' @param start_byte the first byte to download
-#' @param end_byte the last byte to download
-#' @param n_retry how many times to retry when download fails
+# To download a partial binary file (see `curl -r`)
+# 
+# Utility to save server and client resource by downloading only 
+# segment of files.
+# 
+# @param connection the url to a binary object
+# @param start_byte the first byte to download
+# @param end_byte the last byte to download
+# @param n_retry how many times to retry when download fails
 downloadBinRange <- function(connection, start_byte, end_byte, 
                              n_retry = 5){
   # this way we can fecth only a part of a binary file
