@@ -4,7 +4,7 @@
 \alias{dowloadFilesForAnnotations}
 \title{Retreive list of annotation files from a query}
 \usage{
-dowloadFilesForAnnotations(query, dst_dir, prefix = "annotation")
+dowloadFilesForAnnotations(query, dst_dir, prefix = "annotation", ...)
 }
 \arguments{
 \item{query}{a data.table or data.frame (see details)}
@@ -12,6 +12,8 @@ dowloadFilesForAnnotations(query, dst_dir, prefix = "annotation")
 \item{dst_dir}{a directory to store the resulting data}
 
 \item{prefix}{a string to prepend to filenames}
+
+\item{...}{extra argument passed to \code{link{getAnnotationFile}}}
 }
 \description{
 This function uses a formated query
@@ -25,10 +27,14 @@ Typically, it will be obtained through \code{\link{getAllAnnotationData}}.
 }
 \examples{
 \dontrun{
+# we retreive all annotations from the database
 all_annotations = getAllAnnotationData()
-query = all_annotations[author=="qgeissmann"]
-my_annotations <- dowloadFilesForAnnotations(query, 
-                               dst_dir = "/tmp/my_annotation")
+# we filter for only those made by one author before a certain date
+query = all_annotations[author=="qgeissmann" & date < "2016-10-26"]
+# we make one file for each annotation and save it in dst_dir
+my_annotations <- dowloadFilesForAnnotations(query,
+                               dst_dir = "/tmp/my_annotation",
+                               verbose=T)
 }
 }
 \seealso{

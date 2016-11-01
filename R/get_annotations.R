@@ -99,6 +99,7 @@ getAnnotationFile <- function(file,
 #' @param query a data.table or data.frame (see details)
 #' @param dst_dir a directory to store the resulting data
 #' @param prefix a string to prepend to filenames
+#' @param ... extra argument passed to \code{link{getAnnotationFile}}
 #' @details \code{query} must contain the columns \code{id},
 #' \code{start}, \code{end}, \code{file}. They indicate, the annotation uid
 #' , the start and end of the wav file, and the url of the wav file, respactively.
@@ -106,15 +107,20 @@ getAnnotationFile <- function(file,
 #' @seealso \code{\link{getAllAnnotationData}}
 #' @examples
 #' \dontrun{
+#' # we retreive all annotations from the database
 #' all_annotations = getAllAnnotationData()
-#' query = all_annotations[author=="qgeissmann"]
-#' my_annotations <- dowloadFilesForAnnotations(query, 
-#'                                dst_dir = "/tmp/my_annotation")
+#' # we filter for only those made by one author before a certain date
+#' query = all_annotations[author=="qgeissmann" & date < "2016-10-26"]
+#' # we make one file for each annotation and save it in dst_dir
+#' my_annotations <- dowloadFilesForAnnotations(query,
+#'                                dst_dir = "/tmp/my_annotation",
+#'                                verbose=T)
 #' }
 #' @export
 dowloadFilesForAnnotations <- function(query, 
                                        dst_dir, 
-                                       prefix="annotation"){
+                                       prefix="annotation",
+                                       ...){
   if(!dir.exists(dst_dir))
     stop(paste(dst_dir, "does not exist"))
   q <- as.data.table(query)
@@ -122,7 +128,7 @@ dowloadFilesForAnnotations <- function(query,
   q[, start := as.numeric(start)]
   q[, end := as.numeric(end)]
   annotation_file_map <- q[, 
-                           .(annotation_path = getAnnotationFile(file, start, end, dst=dst)), 
+                           .(annotation_path = getAnnotationFile(file, start, end, dst=dst, ...)), 
                            by=id]
   setkeyv(q, "id")
   setkeyv(annotation_file_map, "id")
