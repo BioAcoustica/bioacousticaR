@@ -63,7 +63,7 @@ print(durations)
 
 This way, we have one annotation per id.
 
-The same approach can be used to make much more complicated analysis. on instance, you could replace `getDuration()` by a function that computes a power spectrum.
+The same approach can be used to make much more complicated analysis. For instance, you could replace `getDuration()` by a function that computes a power spectrum.
 
 
 Uploading data and pushing annotations
