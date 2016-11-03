@@ -48,7 +48,8 @@ By default, file will not be redownloaded if they already exist.
 
 
 As a simple example, we could open each file and retreive its duration:
-```
+
+```R
 getDuration <- function(file){
   wav <- tuneR::readWave(file)
   length(wav@left) / wav@samp.rate
