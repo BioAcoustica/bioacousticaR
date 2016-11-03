@@ -12,9 +12,9 @@ In addition, it allows to upload annotated audio files in bash.
 Building a local collection
 ----------------------------
 
-Bioacoustica allows users to tag segment of recordings.
+Bioacoustica allows users to tag segments of recordings.
 This generates so called **"annotations"**.
-Each annotation has a parent audio file, a start and an end time, and other informations (taxon, author,...).
+Each annotation has a unique identifier, a parent audio file, a start and an end time, and other informations (taxon, author,...).
 
 An analysis project will generally involve fetching files corresponding to annotations in order to process them locally.
 
@@ -63,7 +63,7 @@ print(durations)
 
 This way, we have one annotation per id.
 
-The same approach can be used to make much more complicated analysis. For instance, you could replace `getDuration()` by a function that computes a power spectrum.
+The same approach can be used to make much more complicated analysis. For instance, you could replace `getDuration()` by a function that computes a power spectrum (as long as you return it as a `data.table`).
 
 
 Uploading data and pushing annotations
