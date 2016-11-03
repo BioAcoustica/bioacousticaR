@@ -112,6 +112,7 @@ getAnnotationFile <- function(file,
 #' @param prefix a string to prepend to filenames
 #' @param force whether to downoad and overwrite pre-existing file
 #' @param ... extra argument passed to \code{link{getAnnotationFile}}
+#' @return an inflated query with a extra columns mapping the path of the saved audio files
 #' @details \code{query} must contain the columns \code{id},
 #' \code{start}, \code{end}, \code{file}. They indicate, the annotation uid
 #' , the start and end of the wav file, and the url of the wav file, respactively.
@@ -144,6 +145,7 @@ dowloadFilesForAnnotations <- function(query,
                            .(annotation_path = getAnnotationFile(file, start, end, 
 																 dst=dst, force=force, ...)), 
                            by=id]
+  q[, dst := NULL]
   setkeyv(q, "id")
   setkeyv(annotation_file_map, "id")
   q[annotation_file_map]
