@@ -10,7 +10,12 @@
 #' Other annotation data are available as extra columns.
 #' @export
 getAllAnnotationData <- function(path = "/R/annotations") {
-  fetchView(path);
+  out <- fetchView(path)
+  out[, end :=as.numeric(end)]
+  out[, start :=as.numeric(start)]
+  #todo warn when na were omited
+  na.omit(out)
+  
 }
 
 
@@ -25,6 +30,7 @@ getAllAnnotationData <- function(path = "/R/annotations") {
 #' @param start the start of the desired section, in second
 #' @param end the end of the desired section, in second
 #' @param dst a character vector indicating where to save the resulting file
+#' @param force whether to downoad and overwrite pre-existing file
 #' @param header_size the number of bytes in the header of a wave file
 #' @param verbose weher to print extra information
 #' @return the path to resulting file
@@ -34,10 +40,15 @@ getAnnotationFile <- function(file,
                               start, 
                               end, 
                               dst, 
+                              force=F,
                               header_size=44, 
                               verbose=F){
   if(verbose)
     message(paste("getting", file, "from", start, "to", end))
+  
+  # the file is already there
+  if(!force & file.exists(dst))
+	  return(dst)
   
   header_bin = downloadBinRange(file, 0, header_size)
   header_tmp_file <- tempfile("ba_header_", fileext = ".wav")
@@ -99,6 +110,7 @@ getAnnotationFile <- function(file,
 #' @param query a data.table or data.frame (see details)
 #' @param dst_dir a directory to store the resulting data
 #' @param prefix a string to prepend to filenames
+#' @param force whether to downoad and overwrite pre-existing file
 #' @param ... extra argument passed to \code{link{getAnnotationFile}}
 #' @details \code{query} must contain the columns \code{id},
 #' \code{start}, \code{end}, \code{file}. They indicate, the annotation uid
@@ -120,6 +132,7 @@ getAnnotationFile <- function(file,
 dowloadFilesForAnnotations <- function(query, 
                                        dst_dir, 
                                        prefix="annotation",
+                                       force=F,
                                        ...){
   if(!dir.exists(dst_dir))
     stop(paste(dst_dir, "does not exist"))
@@ -128,7 +141,8 @@ dowloadFilesForAnnotations <- function(query,
   q[, start := as.numeric(start)]
   q[, end := as.numeric(end)]
   annotation_file_map <- q[, 
-                           .(annotation_path = getAnnotationFile(file, start, end, dst=dst, ...)), 
+                           .(annotation_path = getAnnotationFile(file, start, end, 
+																 dst=dst, force=force, ...)), 
                            by=id]
   setkeyv(q, "id")
   setkeyv(annotation_file_map, "id")
