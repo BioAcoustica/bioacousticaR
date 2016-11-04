@@ -1,6 +1,8 @@
 bioacousticaR
 ===================
 
+[![Build Status](https://travis-ci.org/BioAcoustica/bioacousticaR.svg?branch=master)](https://travis-ci.org/BioAcoustica/bioacousticaR)
+
 An `R` package interfacing [BioAcoustica](http://bio.acousti.ca).
 
 BioAcoustica is a sound repository and analysis platform for recordings of wildlife sound.
