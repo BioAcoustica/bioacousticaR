@@ -54,6 +54,7 @@ getAnnotationFile <- function(file,
   header_tmp_file <- tempfile("ba_header_", fileext = ".wav")
   writeBin(header_bin, header_tmp_file)
   headers <- readWave(header_tmp_file)
+  
   unlink(header_tmp_file)
   
   # we have the metadata in "header"
@@ -70,7 +71,7 @@ getAnnotationFile <- function(file,
   packet_size = (stereo + 1) * bits/8
   # we ensure that our sample are multiple of the packet size
   start_sample = floor((start * f) / packet_size) * packet_size 
-  end_sample = floor(((end +1) * f) / packet_size) * packet_size 
+  end_sample = floor((end * f) / packet_size) * packet_size 
   
   # we use metadata to comput first and last bytes needed
   start_byte = 1 + header_size + packet_size * start_sample 
@@ -87,7 +88,7 @@ getAnnotationFile <- function(file,
   
   # check we can read the wave file
   suppressWarnings(
-    wav <- readWave(tmp_file, unit="seconds")
+    wav <- readWave(tmp_file)
   )
   
   duration <- length(wav@left)/ wav@samp.rate
