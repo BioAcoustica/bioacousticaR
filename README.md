@@ -33,10 +33,13 @@ target_annotations <- all_annotations[author == "qgeissmann" & date > "2016-10-2
 ```
 
 Now we can actually download one audio segments for each annotation.
-We just need to define where to save these files (the `DATA_DIR` variable in this example).
+We just need to define where to save these files.
+In a real life scenario, you would manage and create your own directory.
+However, here, for the sake of the example, we create a temperary one (`DATA_DIR`).
 
 ```R
-DATA_DIR <- "/tmp/audio_data"
+DATA_DIR <- file.path(tempdir(),"ba_example")
+dir.create(DATA_DIR)
 target_annotations <- dowloadFilesForAnnotations(target_annotations,
                                 dst_dir = DATA_DIR,
                                 verbose=T)
@@ -44,7 +47,6 @@ target_annotations <- dowloadFilesForAnnotations(target_annotations,
 
 Now, `target_annotations` has been updated with a new column (`annotation_path`) that refers to the path of the saved file.
 By default, file will not be re-downloaded if they already exist.
-
 
 
 As a simple example, we could open each file and retrieve its duration:
