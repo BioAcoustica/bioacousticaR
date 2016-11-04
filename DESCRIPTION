@@ -18,7 +18,6 @@ Depends:
     MASS,
     data.table,
     RCurl,
-    DrupalR,
     xml2,
     tuneR
 LazyLoad: TRUE
