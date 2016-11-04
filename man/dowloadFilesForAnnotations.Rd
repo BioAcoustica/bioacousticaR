@@ -4,7 +4,8 @@
 \alias{dowloadFilesForAnnotations}
 \title{Retreive list of annotation files from a query}
 \usage{
-dowloadFilesForAnnotations(query, dst_dir, prefix = "annotation", ...)
+dowloadFilesForAnnotations(query, dst_dir, prefix = "annotation", force = F,
+  ...)
 }
 \arguments{
 \item{query}{a data.table or data.frame (see details)}
@@ -13,7 +14,12 @@ dowloadFilesForAnnotations(query, dst_dir, prefix = "annotation", ...)
 
 \item{prefix}{a string to prepend to filenames}
 
+\item{force}{whether to downoad and overwrite pre-existing file}
+
 \item{...}{extra argument passed to \code{link{getAnnotationFile}}}
+}
+\value{
+an inflated query with a extra columns mapping the path of the saved audio files
 }
 \description{
 This function uses a formated query

@@ -4,7 +4,8 @@
 \alias{getAnnotationFile}
 \title{Fetch a portion of a remote wav file}
 \usage{
-getAnnotationFile(file, start, end, dst, header_size = 44, verbose = F)
+getAnnotationFile(file, start, end, dst, force = F, header_size = 44,
+  verbose = F)
 }
 \arguments{
 \item{file}{the URL of a file}
@@ -14,6 +15,8 @@ getAnnotationFile(file, start, end, dst, header_size = 44, verbose = F)
 \item{end}{the end of the desired section, in second}
 
 \item{dst}{a character vector indicating where to save the resulting file}
+
+\item{force}{whether to downoad and overwrite pre-existing file}
 
 \item{header_size}{the number of bytes in the header of a wave file}
 
