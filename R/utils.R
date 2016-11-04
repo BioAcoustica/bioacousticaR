@@ -21,7 +21,6 @@ fetchView <- function(path,
   if(verbose)
     message(paste0("Getting", csv_path))
   fread(csv_path)
-  return ();
 }
 
 # To download a partial binary file (see `curl -r`)

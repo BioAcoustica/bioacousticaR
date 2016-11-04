@@ -11,9 +11,12 @@
 #' @export
 getAllAnnotationData <- function(path = "/R/annotations") {
   out <- fetchView(path)
+  out[, id :=as.integer(id)]
   out[, end :=as.numeric(end)]
   out[, start :=as.numeric(start)]
+  out[, date :=as.POSIXct(date)]
   #todo warn when na were omited
+  setkey(out, id)
   na.omit(out)
   
 }
