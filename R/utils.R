@@ -1,17 +1,4 @@
-# # pass
-# #
-# # ss
-# # 
-# # @param url the root url for bioacoustica
-# getHandle <- function(url="http://bio.acousti.ca"){
-#   return(list(url))
-# }
-
-# authenticate <- function(username, password) {
-#   return(drupalr.authenticate(getHandle(), username, password));  
-# }
-
-# Util function to fetch a view from bioacoustica
+# Utility function to fetch a view from bioacoustica
 # we just use fread ability to download data directly from http
 #
 fetchView <- function(path, 
@@ -23,7 +10,7 @@ fetchView <- function(path,
   fread(csv_path)
 }
 
-# To download a partial binary file (see `curl -r`)
+# Downloads a partial binary file (see `curl -r`)
 # 
 # Utility to save server and client resource by downloading only 
 # segment of files.

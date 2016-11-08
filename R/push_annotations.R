@@ -1,3 +1,0 @@
-f <- function(s){
-   s
-}

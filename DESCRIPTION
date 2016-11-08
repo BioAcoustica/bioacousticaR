@@ -23,7 +23,6 @@ Depends:
 LazyLoad: TRUE
 Collate:
     'get_annotations.R'
-    'push_annotations.R'
     'utils.R'
 URL: https://github.com/BioAcoustica/bioacousticaR
 RoxygenNote: 5.0.1

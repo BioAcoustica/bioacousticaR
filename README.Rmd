@@ -35,6 +35,8 @@ In `R`, we will start by listing available annotations:
 ```R
 library(bioacoustica)
 all_annotations <- getAllAnnotationData()
+print(colnames(all_annotations))
+print(all_annotations[, .(author, date, taxon)])
 ```
 
 Now, we have a `data.table` (a `data.table` is essentially a `data.frame` with extra functionalities) containing a list of annotations (one per row).
