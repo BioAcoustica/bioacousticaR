@@ -37,13 +37,15 @@ test_that("We can use our partial dowload on local file and retreive its value",
   end=2
   
   o = makeNoiseWaveFile()
+  on.exit(unlink(o$file))
   dst = tempfile("ba_test",fileext = ".wav")
+  on.exit(unlink(dst))
+  
   getAnnotationFile(paste0("file://",o$file), 
                     start, end,dst=dst)
   
   wave_from_file = tuneR::readWave(dst)
-  unlink(dst)
-  unlink(o$file)
+  
   
   new_x <- tuneR::normalize(wave_from_file, 
                            "1",  center=F, rescale=F)@left
@@ -55,3 +57,31 @@ test_that("We can use our partial dowload on local file and retreive its value",
   
 })
 
+
+test_that("We can use our partial dowload on local file and retreive its value.
+          extensible wave format", {
+  #generate 3second of pseudorandom data
+  set.seed(12325)
+  # chunk start and end
+  start = 1
+  end=2
+  
+  o = makeNoiseWaveFile(extensible = T)
+  on.exit(unlink(o$file))
+  dst = tempfile("ba_test",fileext = ".wav")
+  on.exit(unlink(dst))
+  
+  getAnnotationFile(paste0("file://",o$file), 
+                    start, end,dst=dst)
+  
+  wave_from_file = tuneR::readWave(dst)
+  
+  
+  new_x <- tuneR::normalize(wave_from_file, 
+                            "1",  center=F, rescale=F)@left
+  x <- o$x[(start*44100 + 1) : (end * 44100 +1)]
+  testthat::expect_length(new_x, length(x))
+  
+  # two object should be the same +- epsion (float -> 16b int -> float)
+  testthat::expect_lt(sum(abs(new_x - x)) / (44100 * 1), 1e-4)
+})

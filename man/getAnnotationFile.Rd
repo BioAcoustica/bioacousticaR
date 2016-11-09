@@ -4,7 +4,7 @@
 \alias{getAnnotationFile}
 \title{Fetch a portion of a remote wav file}
 \usage{
-getAnnotationFile(file, start, end, dst, force = F, header_size = 44,
+getAnnotationFile(file, start, end, dst, force = F, first_chunk = 1024,
   verbose = F)
 }
 \arguments{
@@ -18,7 +18,7 @@ getAnnotationFile(file, start, end, dst, force = F, header_size = 44,
 
 \item{force}{whether to downoad and overwrite pre-existing file}
 
-\item{header_size}{the number of bytes in the header of a wave file}
+\item{first_chunk}{the number of bytes downloaded at first in order to identify the file}
 
 \item{verbose}{weher to print extra information}
 }

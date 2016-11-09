@@ -34,7 +34,7 @@ getAllAnnotationData <- function(path = "/R/annotations") {
 #' @param end the end of the desired section, in second
 #' @param dst a character vector indicating where to save the resulting file
 #' @param force whether to downoad and overwrite pre-existing file
-#' @param header_size the number of bytes in the header of a wave file
+#' @param first_chunk the number of bytes downloaded at first in order to identify the file
 #' @param verbose weher to print extra information
 #' @return the path to resulting file
 #' @seealso \code{\link{dowloadFilesForAnnotations}}, a wrapper around this function
@@ -44,7 +44,7 @@ getAnnotationFile <- function(file,
                               end, 
                               dst, 
                               force=F,
-                              header_size=44, 
+                              first_chunk=1024, 
                               verbose=F){
   if(verbose)
     message(paste("getting", file, "from", start, "to", end))
@@ -53,12 +53,16 @@ getAnnotationFile <- function(file,
   if(!force & file.exists(dst))
 	  return(dst)
   
-  header_bin = downloadBinRange(file, 0, header_size)
+  header_bin = downloadBinRange(file, 0, first_chunk)
   header_tmp_file <- tempfile("ba_header_", fileext = ".wav")
-  writeBin(header_bin, header_tmp_file)
-  headers <- readWave(header_tmp_file)
+  on.exit(unlink(header_tmp_file))
   
-  unlink(header_tmp_file)
+  writeBin(header_bin, header_tmp_file)
+  header_size = findDataChunkByte(header_tmp_file)
+  
+  header_bin = downloadBinRange(file, 0, header_size)
+  writeBin(header_bin[1:(header_size+1)], header_tmp_file)
+  headers <- readWave(header_tmp_file)
   
   # we have the metadata in "header"
   f = headers@samp.rate
@@ -104,7 +108,6 @@ getAnnotationFile <- function(file,
   writeWave(wav, dst)
   return(dst)
 }
-
 
 #' Retreive list of annotation files from a query
 #'
