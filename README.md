@@ -1,12 +1,5 @@
----
-title: "bioacousticaR"
-author: Quentin Geissmann
-date: November 11, 2016
-output:
-  md_document:
-    variant: markdown_github
----
-
+bioacousticaR
+===================
 
 [![Build Status](https://travis-ci.org/BioAcoustica/bioacousticaR.svg?branch=master)](https://travis-ci.org/BioAcoustica/bioacousticaR)
 
@@ -161,41 +154,18 @@ the following statement means "for each unique id compute `getDuration()`, and s
 durations  <- target_annotations[ ,
                                   .(duration = getDuration(annotation_path)),
                                   by=id]
+```
+
+```
+## Error in tuneR::readWave(file): File '/tmp/Rtmpc27r4s/ba_example/annotation_260_581_16_Chorthippus_brunneus_804r1_14-Dec.wav' does not exist.
+```
+
+```r
 print(durations)
 ```
 
 ```
-##      id  duration
-##  1: 260 19.058345
-##  2: 261 18.993039
-##  3: 262 18.989229
-##  4: 264 12.243469
-##  5: 268 11.875578
-##  6: 270 12.920385
-##  7: 272 12.400839
-##  8: 274 30.000023
-##  9: 275  8.885102
-## 10: 277  8.554036
-## 11: 278 11.597211
-## 12: 279 13.141247
-## 13: 280 15.073311
-## 14: 281 12.697075
-## 15: 282  6.716485
-## 16: 283 17.584875
-## 17: 284  7.154853
-## 18: 285 29.279660
-## 19: 286 27.145692
-## 20: 287 29.249093
-## 21: 288 29.018073
-## 22: 289 13.700340
-## 23: 290 29.278571
-## 24: 291 29.071224
-## 25: 292 21.869501
-## 26: 293 26.291270
-## 27: 294 23.636032
-## 28: 295 19.821429
-## 29: 296 28.211088
-##      id  duration
+## Error in print(durations): object 'durations' not found
 ```
 
 This way, we have one annotation per id.
@@ -221,22 +191,18 @@ powerSpectrum <- function(file){
 power_spectra  <- target_annotations[ ,
                                   powerSpectrum(annotation_path),
                                   by=id]
+```
+
+```
+## Error in tuneR::readWave(file): File '/tmp/Rtmpc27r4s/ba_example/annotation_260_581_16_Chorthippus_brunneus_804r1_14-Dec.wav' does not exist.
+```
+
+```r
 power_spectra
 ```
 
 ```
-##        id  amplitude   frequency
-##    1: 260 1.00000000  0.00000000
-##    2: 260 0.79668137  0.08613281
-##    3: 260 0.22777643  0.17226563
-##    4: 260 0.14599254  0.25839844
-##    5: 260 0.08206050  0.34453125
-##   ---                           
-## 7420: 296 0.04068836 21.61933594
-## 7421: 296 0.03438722 21.70546875
-## 7422: 296 0.02965878 21.79160156
-## 7423: 296 0.02531867 21.87773437
-## 7424: 296 0.02190739 21.96386719
+## Error in eval(expr, envir, enclos): object 'power_spectra' not found
 ```
 
 Now, with this data structure, it is easy to visualise the data.
@@ -251,18 +217,27 @@ ggplot(power_spectra, aes(frequency, amplitude)) +
   facet_wrap(~id)
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+```
+## Error in ggplot(power_spectra, aes(frequency, amplitude)): object 'power_spectra' not found
+```
 
 Now, the issue is that we have only the id column, and we would like to map the other variables such as taxon. That is, for each id, find the matching taxon. This is called a join and can be done very simply in `data.table`:
 
 
 ```r
 power_spectra <- target_annotations[power_spectra]
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'power_spectra' not found
+```
+
+```r
 dim(power_spectra)
 ```
 
 ```
-## [1] 7424   14
+## Error in eval(expr, envir, enclos): object 'power_spectra' not found
 ```
 
 ```r
@@ -270,11 +245,7 @@ colnames(power_spectra)
 ```
 
 ```
-##  [1] "id"              "type"            "taxon"          
-##  [4] "taxon_id"        "start"           "end"            
-##  [7] "file"            "recording"       "original_tape"  
-## [10] "author"          "date"            "annotation_path"
-## [13] "amplitude"       "frequency"
+## Error in is.data.frame(x): object 'power_spectra' not found
 ```
 
 This way, we can enrich our visualisation with taxonomic information. For instance we want to compute an average spectrum per taxon (blue line)
@@ -291,7 +262,9 @@ ggplot(power_spectra, aes(frequency, amplitude)) +
   facet_wrap(~taxon, ncol=1)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
+```
+## Error in ggplot(power_spectra, aes(frequency, amplitude)): object 'power_spectra' not found
+```
 
 
 

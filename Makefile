@@ -11,7 +11,7 @@ vpath %.R  $(R_DIR)
 
 all: check README.md $(R_PDF) R
 
-README.md : README.Rmd check
+README.md : README.Rmd
 	@echo "Knitting README"
 	@echo "library(knitr); knit(input=\"$<\", output=\"$@\")"| R --vanilla
 

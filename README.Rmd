@@ -1,12 +1,5 @@
----
-title: "bioacousticaR"
-author: Quentin Geissmann
-date: November 11, 2016
-output:
-  md_document:
-    variant: markdown_github
----
-
+bioacousticaR
+===================
 
 [![Build Status](https://travis-ci.org/BioAcoustica/bioacousticaR.svg?branch=master)](https://travis-ci.org/BioAcoustica/bioacousticaR)
 
@@ -130,7 +123,7 @@ Now, with this data structure, it is easy to visualise the data.
 For instance, if we want one spectrum per id:
 
 
-```{r}
+```{r,fig.height=9, fig.width=9}
 library(ggplot2)
 ggplot(power_spectra, aes(frequency, amplitude)) +
   geom_line() +
@@ -148,7 +141,7 @@ colnames(power_spectra)
 This way, we can enrich our visualisation with taxonomic information. For instance we want to compute an average spectrum per taxon (blue line)
 
 
-```{r}
+```{r,fig.height=9, fig.width=9}
 ggplot(power_spectra, aes(frequency, amplitude)) +
   # we display individual spectra, in shaded black
   geom_line(aes(group=id), alpha=.2) +  
