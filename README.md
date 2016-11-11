@@ -1,3 +1,5 @@
+[//]: # (This is an automatically generated md file. Do DO NOT directly. Instead, edit the `README.Rmd`, and compile it with `make README.md`)
+
 bioacousticaR
 ===================
 
