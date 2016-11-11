@@ -7,6 +7,8 @@ Authors@R: c(
     person("Ed", "Baker", role = c("aut"), email ="edward.baker@nhm.ac.uk"),
     person("Quentin", "Geissmann", role = c("cre"),email ="qgeissmann@gmail.com")
     )
+Author: Ed Baker
+Maintainer: Quentin Geissmann <qgeissmann@gmail.com>
 Description: this package was designed to interface bioacoustica (http://bio.acousti.ca/).
     In particular, it provides utilities to list and download available annotations.
     In addition, it allows users to programatically upload their data.
