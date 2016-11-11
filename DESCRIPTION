@@ -4,11 +4,9 @@ Title: Provides access to the BioAcoustica platform through R
 Version: 2.0
 Date: 2016-10-25
 Authors@R: c(
-    person("Ed", "Baker", role = c("aut", "cre"),email ="edward.baker@nhm.ac.uk"),
-    person("Quentin", "Geissmann", role = c("aut", "cre"),email ="qgeissmann@gmail.com")
+    person("Ed", "Baker", role = c("aut"), email ="edward.baker@nhm.ac.uk"),
+    person("Quentin", "Geissmann", role = c("cre"),email ="qgeissmann@gmail.com")
     )
-Author: Ed Baker
-Maintainer: Ed Baker <edward.baker@nhm.ac.uk>
 Description: this package was designed to interface bioacoustica (http://bio.acousti.ca/).
     In particular, it provides utilities to list and download available annotations.
     In addition, it allows users to programatically upload their data.
