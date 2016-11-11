@@ -35,5 +35,5 @@ check: $(R_TGZ)
 	R CMD check --as-cran $<
 
 clean:
-	rm -fr *.tar.gz *.out *.pdf *.log README_CACHE README_files *cache* .Rd2pdf* figure/
+	rm -fr *.tar.gz *.out *.pdf *.log README.md README_CACHE README_files *cache* .Rd2pdf* figure/
 
