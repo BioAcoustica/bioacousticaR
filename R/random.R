@@ -1,3 +1,3 @@
 randomNumber <- function(filename) {
-  return(runif())
+  return(runif(1))
 }
