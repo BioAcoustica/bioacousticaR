@@ -1,6 +1,6 @@
 collectionDownload <- function(collectionID, c) {
   
-  collection <- read.csv(text=drupalr.get("bio.acousti.ca/", "collection/csv/17197/17197", c))
+  collection <- read.csv(text=drupalr.get("bio.acousti.ca/", paste0("collection/csv/",collectionID,"/", collectionID), c))
   
   bioacoustica.mkdir("bioacoustica_data")
   
