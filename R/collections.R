@@ -4,7 +4,7 @@ bioacoustica.collectionMetadata <- function(collectionID, c) {
 }
 
 bioacoustica.collectionDownload <- function(collectionID, c) {
-  if (typeof(collectionID) != "list")
+  if (typeof(collectionID) != "list") {
     collection <- read.csv(text=drupalr.get("bio.acousti.ca/", paste0("collection/csv/",collectionID,"/", collectionID), c))
   } else {
     collection <- collectionID
