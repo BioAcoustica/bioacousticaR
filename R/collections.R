@@ -1,4 +1,4 @@
-collectionDownload <- function(collectionID) {
+collectionDownload <- function(collectionID, c) {
   
   collection <- read.csv(text=drupalr.get("bio.acousti.ca/", "collection/csv/17197/17197", c))
   
