@@ -1,4 +1,9 @@
-collectionDownload <- function(collectionID, c) {
+bioacoustica.collectionMetadata <- function(collectionID, c) {
+  collection <- read.csv(text=drupalr.get("bio.acousti.ca/", paste0("collection/csv/",collectionID,"/", collectionID), c))
+  return(collection)
+}
+
+bioacoustica.collectionDownload <- function(collectionID, c) {
   
   collection <- read.csv(text=drupalr.get("bio.acousti.ca/", paste0("collection/csv/",collectionID,"/", collectionID), c))
   
