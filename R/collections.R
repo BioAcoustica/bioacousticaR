@@ -4,6 +4,7 @@ bioacoustica.collectionMetadata <- function(collectionID, c) {
 }
 
 bioacoustica.collectionDownload <- function(collectionID, c) {
+  collection <- NULL;
   if (typeof(collectionID) != "list") {
     collection <- read.csv(text=drupalr.get("bio.acousti.ca/", paste0("collection/csv/",collectionID,"/", collectionID), c))
   } else {
@@ -35,4 +36,16 @@ bioacoustica.collectionDownload <- function(collectionID, c) {
   apply(collection, 1, downloadData)
   setwd("..")
   
+}
+
+bioacoustica.collectionAnalyse <- function(FUN, collection) {
+  functions <- FUN
+  n <- names(collection)
+  foreach (i=1:length(functions)) %do% {
+    FUN <- match.fun(functions[i])
+    column <- sapply(collection[,"entity_id"], FUN)
+    collection <- cbind(collection, column)
+  }
+  names(collection) <- c(n, functions)
+  return(collection)
 }
