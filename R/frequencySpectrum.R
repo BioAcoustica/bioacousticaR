@@ -4,5 +4,5 @@ dominantFrequency <- function(filename) {
   f <- song@samp.rate
   data <- meanspec(song, f=f, plot=FALSE)
   data <- data[which(data[,2] > mean(ms[,2])),]
-  return(c(min(data[,1]),"-",max(data[,1]))
+  return(c(min(data[,1]),"-",max(data[,1])))
 }
