@@ -3,6 +3,6 @@ frequencySpectrum <- function(filename) {
   song <- readWave(paste0("bioacoustica_data/",filename))
   f <- song@samp.rate
   data <- meanspec(song, f=f, plot=FALSE)
-  data <- data[which(data[,2] > mean(ms[,2])),]
+  data <- data[which(data[,2] > mean(data[,2])),]
   return(c(min(data[,1]),"-",max(data[,1])))
 }
