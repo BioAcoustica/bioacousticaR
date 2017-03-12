@@ -4,5 +4,5 @@ frequencySpectrum <- function(filename) {
   f <- song@samp.rate
   data <- meanspec(song, f=f, plot=FALSE)
   data <- data[which(data[,2] > mean(data[,2])),]
-  return(c(min(data[,1]),"-",max(data[,1])))
+  return(paste0(min(data[,1]),"-",max(data[,1])))
 }
