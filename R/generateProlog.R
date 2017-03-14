@@ -1,6 +1,3 @@
-library(bioacoustica)
-library(dplyr)
-
 taxa <- bioacoustica.listTaxa();
 traits <- bioacoustica.listTraits(c);
 

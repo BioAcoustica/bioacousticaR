@@ -13,4 +13,5 @@ Depends:
   xml2,
   foreach,
   tuneR,
-  seewave
+  seewave,
+  dplyr
