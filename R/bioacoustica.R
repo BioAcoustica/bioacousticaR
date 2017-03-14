@@ -24,6 +24,11 @@ bioacoustica.listTaxa <- function() {
   return (taxa);
 }
 
+bioacoustica.listTraits <- function(c) {
+  ba_traits <- read.csv(text=drupalr.get("bio.acousti.ca/", "R/bioacoustic_traits", c));
+  return (ba_traits);
+}
+
 bioacoustica.listCollections <- function() {
   path <- "/R/collections";
   collections <- bioacoustica.call(path);
