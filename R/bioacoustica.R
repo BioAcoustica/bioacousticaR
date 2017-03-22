@@ -25,7 +25,9 @@ bioacoustica.listTaxa <- function() {
 }
 
 bioacoustica.listTraits <- function(c) {
-  ba_traits <- read.csv(text=drupalr.get("bio.acousti.ca/", "R/bioacoustic_traits", c));
+  message("Traits file is large and generated on cron, it may lag behind website data.")
+  path <- "/files/traits/bioacoustic-traits.txt";
+  ba_traits <- bioacoustica.call(path);
   return (ba_traits);
 }
 
