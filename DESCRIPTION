@@ -15,3 +15,5 @@ Depends:
   tuneR,
   seewave,
   dplyr
+Remotes:
+  edwbaker/DrupalR
