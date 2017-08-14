@@ -1,17 +1,7 @@
 language: r
+cache: packages
 sudo: required
 warnings_are_errors: true
 
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y libsndfile1-dev 
-  - sudo apt-get install -y fftw3-dev 
-before_script:
-    - git config --global user.name "travis"
-    - git config --global user.email "travis@example.org"
-r_binary_packages:
-    - ggplot2
-    - knitr
 r_github_packages:
-- rstudio/rmarkdown
 - edwbaker/DrupalR
