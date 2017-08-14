@@ -14,3 +14,4 @@ r_binary_packages:
     - knitr
 r_github_packages:
 - rstudio/rmarkdown
+- edwbaker/drupalr
