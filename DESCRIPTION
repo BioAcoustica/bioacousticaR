@@ -5,7 +5,7 @@ Version: 1.0
 Date: 2014-12-17
 Author: Ed Baker
 Maintainer: Ed Baker <edwbaker@gmail.com>
-Description: More about what it does (maybe more than one line)
+Description: Package to access recordings and related data from the BioAcoustica repository.
 License: GPL
 Depends:
   DrupalR,
