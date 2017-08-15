@@ -3,7 +3,7 @@ bioacoustica.getHandle <- function() {
 }
 
 bioacoustica.authenticate <- function(username, password) {
-  return(DrupalR::drupalr.authenticate(bioacoustica::bioacoustica.getHandle(), username, password));  
+  return(DrupalR::drupalr.authenticate(bioacoustica.getHandle(), username, password));  
 }
 
 bioacoustica.call <- function(path) {
@@ -88,7 +88,7 @@ bioacoustica.postComment <- function(path, body, c) {
     'field_start_time[und][0][value]' = '',
     'field_end_time[und][0][value]' = ''
   );
-  DrupalR::drupalr.postComment(bioacoustica::bioacoustica.getHandle(), path, body, extra_pars, c)
+  DrupalR::drupalr.postComment(bioacoustica.getHandle(), path, body, extra_pars, c)
 }
 
 bioacoustica.postAnnotation <- function(path, type, taxon, start, end, c) {
@@ -99,7 +99,7 @@ bioacoustica.postAnnotation <- function(path, type, taxon, start, end, c) {
     'field_start_time[und][0][value]' = start,
     'field_end_time[und][0][value]' = end
   );
-  DrupalR::drupalr.postComment(bioacoustica::bioacoustica.getHandle(), path, '', extra_pars, c);
+  DrupalR::drupalr.postComment(bioacoustica.getHandle(), path, '', extra_pars, c);
 }
 
 bioacoustica.postFile <- function(upfile, c) {

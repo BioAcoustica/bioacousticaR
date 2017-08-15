@@ -10,7 +10,7 @@ bioacoustica.collectionDownload <- function(collectionID, c) {
   } else {
     collection <- collectionID
   }
-  bioacoustica::bioacoustica.mkdir("bioacoustica_data")
+  bioacoustica.mkdir("bioacoustica_data")
   
   downloadData <- function(data, name) {
     url <- data["recording_url"]
@@ -25,7 +25,7 @@ bioacoustica.collectionDownload <- function(collectionID, c) {
   trimFile <- function(filename, start, end) {
     long <- readWave(filename)
     f <- long@samp.rate
-    short <- cutw(long, f=f, from=as.numeric(start),to=as.numeric(end), method="Wave")
+    short <- seewave::cutw(long, f=f, from=as.numeric(start),to=as.numeric(end), method="Wave")
     file.remove(filename)
     seewave::savewav(short, f=f, file=filename)
   }
