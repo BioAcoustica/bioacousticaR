@@ -38,6 +38,8 @@ bioacoustica.listCollections <- function() {
 }
 
 bioacoustica.getAnnotations <- function(taxon=NULL, type=NULL, skipcheck=FALSE) {
+  #ToDo: Implement taxon filtering.
+  #ToDO: Implement type filtering.
   path <- "/R/annotations";
   annotations <- bioacoustica::bioacoustica.call(path);
   return (annotations);

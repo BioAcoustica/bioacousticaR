@@ -13,81 +13,48 @@ bioacoustica.getAnnotations(taxon = NULL, type = NULL, skipcheck = FALSE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{taxon}{
-%%     ~~Describe \code{taxon} here~~
-}
+  A taxon name can be passed to the function to filter annotations to that taxon and its children.
+  }
   \item{type}{
-%%     ~~Describe \code{type} here~~
-}
+  An annotation type can be passed to the function to filter anootations to that type.
+  }
   \item{skipcheck}{
-%%     ~~Describe \code{skipcheck} here~~
+  If set to TRUE the taxon and type filters will not be checked before filtering.
+  }
 }
-}
-\details{
+%\details{
 %%  ~~ If necessary, more details than the description above ~~
-}
+%}
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
+CSV file a string.
+%\references{
 %% ~put references to the literature/web site here ~
-}
+%}
 \author{
-%%  ~~who you are~~
+Ed Baker
 }
-\note{
+%\note{
 %%  ~~further notes~~
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+%\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+%}
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (taxon = NULL, type = NULL, skipcheck = FALSE) 
-{
-    if (is.null(taxon)) {
-        taxon <- "?name="
-    }
-    else {
-        if (skipcheck == TRUE || sum(sapply(bioacoustica.listTaxa(), 
-            match, taxon, nomatch = 0)) == 1) {
-            taxon <- sub(" ", "+", taxon)
-            taxon <- paste("?name=", taxon, sep = "")
-        }
-        else {
-            stop(paste(taxon, "is not a known taxon"))
-        }
-    }
-    if (is.null(type)) {
-        type <- "&name_1="
-    }
-    else {
-        if (skipcheck == TRUE || sum(sapply(bioacoustica.listTypes(), 
-            match, type, nomatch = 0)) == 1) {
-            type <- sub(" ", "+", type)
-            type <- paste("&name_1=", type, sep = "")
-        }
-        else {
-            stop(paste(type, "is not a valid annotation type"))
-        }
-    }
-    url <- paste("http://bio.acousti.ca/R/annotations", taxon, 
-        type, sep = "")
-    annotations <- bioacoustica.call(url)
-    return(annotations)
-  }
+function(taxon=NULL, type=NULL, skipcheck=FALSE) {
+  path <- "/R/annotations";
+  annotations <- bioacoustica::bioacoustica.call(path);
+  return (annotations);
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

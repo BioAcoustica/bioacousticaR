@@ -5,51 +5,50 @@
 Function to list taxa present on BioAcoustica
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This fucntion is used to list biological taxa that are presentin the BioAcoustica database.
 }
 \usage{
 bioacoustica.listTaxa()
 }
 %- maybe also 'usage' for other objects documented here.
-\details{
+%\details{
 %%  ~~ If necessary, more details than the description above ~~
-}
-\value{
+%}
+%\value{
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
-}
-\references{
+%}
+%\references{
 %% ~put references to the literature/web site here ~
-}
+%}
 \author{
-%%  ~~who you are~~
+Ed Baker
 }
-\note{
+%\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+%\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+%}
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function () 
-{
-    url <- "http://bio.acousti.ca/R/taxa"
-    taxa <- bioacoustica.call(url)
-    return(taxa)
-  }
+function() {
+  path <- "/R/taxa";
+  taxa <- bioacoustica::bioacoustica.call(path);
+  return (taxa);
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
