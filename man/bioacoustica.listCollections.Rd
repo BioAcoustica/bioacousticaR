@@ -8,7 +8,7 @@ Function to list collections present on BioAcoustica
 This function is used to list collections available on BioAcoustica.
 }
 \usage{
-bioacoustica.listCollections(c)
+bioacoustica.listCollections()
 }
 %- maybe also 'usage' for other objects documented here.
 %\arguments{
