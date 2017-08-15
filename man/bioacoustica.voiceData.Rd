@@ -1,5 +1,5 @@
-\name{bioacoustica.britishOrthoptera}
-\alias{bioacoustica.britishOrthoptera}
+\name{bioacoustica.voiceData}
+\alias{bioacoustica.voiceData}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Voice Introduction Demonstration Data
