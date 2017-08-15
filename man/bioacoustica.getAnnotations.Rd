@@ -27,6 +27,7 @@ bioacoustica.getAnnotations(taxon = NULL, type = NULL, skipcheck = FALSE)
 %}
 \value{
 CSV file a string.
+}
 %\references{
 %% ~put references to the literature/web site here ~
 %}
