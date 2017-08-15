@@ -27,7 +27,7 @@ bioacoustica.collectionDownload <- function(collectionID, c) {
     f <- long@samp.rate
     short <- cutw(long, f=f, from=as.numeric(start),to=as.numeric(end), method="Wave")
     file.remove(filename)
-    savewav(short, f=f, file=filename)
+    seewave::savewav(short, f=f, file=filename)
   }
   
   urls <- as.character(collection[,"recording_url"])
@@ -41,6 +41,7 @@ bioacoustica.collectionDownload <- function(collectionID, c) {
 bioacoustica.collectionAnalyse <- function(FUN, collection) {
   functions <- FUN
   n <- names(collection)
+  i <- 1
   foreach (i=1:length(functions)) %do% {
     FUN <- match.fun(functions[i])
     column <- sapply(collection[,"entity_id"], FUN)

@@ -36,7 +36,7 @@ Ed Baker
 }
 %\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 

@@ -63,7 +63,7 @@ bioacoustica.listRecordings <- function(taxon=NULL, children=FALSE) {
 bioacoustica.getAnnotationFile <- function(annotation_id, c) {
   a <- bioacoustica::bioacoustica.getAnnotations(c);
   file <- as.character(subset(a, 
-                              id==annotation_id,
+                              a$id==annotation_id,
                               select="file")[1,1]);
   parts <- strsplit(file, "/");
   filename <- parts[[1]][7];

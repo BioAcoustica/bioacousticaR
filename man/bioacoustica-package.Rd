@@ -6,7 +6,7 @@
 Package to enable the querying of BioAcoustica from within R.
 }
 \description{
-Request metadata and audio recordings from BioAcoustica’s online collection of annotated wildlife sounds (http://bio.acousti/ca).
+Request metadata and audio recordings from BioAcoustica's online collection of annotated wildlife sounds (http://bio.acousti/ca).
 }
 \details{
 \tabular{ll}{
@@ -28,6 +28,6 @@ http://bio.acousti.ca/R
 }
 \examples{
 \dontrun{
-  wing <- bioacoustica.getAnnotations(taxon=“Heteropteryx dilatata”, type=“Threat Response”);
+  wing <- bioacoustica.getAnnotations(taxon="Heteropteryx dilatata", type="Threat Response");
 }
 }
