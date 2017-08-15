@@ -8,7 +8,7 @@ Get list of Orthoptera taxa from BioAcoustica with no subgenera.
 Used by the AAO project.
 }
 \usage{
-Bioacoustics.getOrthopteraNamesNoSubgenus(c)
+bioacoustica.getOrthopteraNamesNoSubgenus(c)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
