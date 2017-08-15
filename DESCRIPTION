@@ -10,6 +10,8 @@ License: What license is it under?
 Depends:
   DrupalR,
   foreach,
-  dplyr
+  dplyr,
+  seewave,
+  tuneR
 Remotes:
   edwbaker/DrupalR
