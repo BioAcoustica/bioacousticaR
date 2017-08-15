@@ -8,7 +8,7 @@ Download demon data from BioAcoustica
 Fucntion to download one of the demonstration datasets provided by BioAcoustica.
 }
 \usage{
-Bioacoustica.downloadDemoData(demo)
+bioacoustica.downloadDemoData(demo)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
