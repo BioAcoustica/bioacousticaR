@@ -1,16 +1,16 @@
 bioacoustica.collectionMetadata <- function(collectionID, c) {
-  collection <- read.csv(text=drupalr.get("bio.acousti.ca/", paste0("collection/csv/",collectionID,"/", collectionID), c))
+  collection <- read.csv(text=DrupalR::drupalr.get("bio.acousti.ca/", paste0("collection/csv/",collectionID,"/", collectionID), c))
   return(collection)
 }
 
 bioacoustica.collectionDownload <- function(collectionID, c) {
   collection <- NULL;
   if (typeof(collectionID) != "list") {
-    collection <- read.csv(text=drupalr.get("bio.acousti.ca/", paste0("collection/csv/",collectionID,"/", collectionID), c))
+    collection <- read.csv(text=DrupalR::drupalr.get("bio.acousti.ca/", paste0("collection/csv/",collectionID,"/", collectionID), c))
   } else {
     collection <- collectionID
   }
-  bioacoustica.mkdir("bioacoustica_data")
+  bioacosutica::bioacoustica.mkdir("bioacoustica_data")
   
   downloadData <- function(data, name) {
     url <- data["recording_url"]

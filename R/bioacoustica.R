@@ -3,43 +3,43 @@ bioacoustica.getHandle <- function() {
 }
 
 bioacoustica.authenticate <- function(username, password) {
-  return(drupalr.authenticate(bioacoustica.getHandle(), username, password));  
+  return(DrupalR::drupalr.authenticate(bioacoustica::bioacoustica.getHandle(), username, password));  
 }
 
 bioacoustica.call <- function(path) {
   message(paste0(bioacoustica.getHandle(), path));
-  download <- drupalr.get(bioacoustica.getHandle(), path);
+  download <- DrupalR::drupalr.get(bioacoustica.getHandle(), path);
   return (read.csv(text = download));
 }
 
 bioacoustica.listTypes <- function() {
   path <- "/R/types";
-  types <- bioacoustica.call(path);
+  types <- bioacoustica::bioacoustica.call(path);
   return (types);
 }
 
 bioacoustica.listTaxa <- function() {
   path <- "/R/taxa";
-  taxa <- bioacoustica.call(path);
+  taxa <- bioacoustica::bioacoustica.call(path);
   return (taxa);
 }
 
 bioacoustica.listTraits <- function(c) {
   message("Traits file is large and generated on cron, it may lag behind website data.")
   path <- "/files/traits/bioacoustic-traits.txt";
-  ba_traits <- bioacoustica.call(path);
+  ba_traits <- bioacoustica::bioacoustica.call(path);
   return (ba_traits);
 }
 
 bioacoustica.listCollections <- function() {
   path <- "/R/collections";
-  collections <- bioacoustica.call(path);
+  collections <- bioacoustica::bioacoustica.call(path);
   return (collections);
 }
 
 bioacoustica.getAnnotations <- function(taxon=NULL, type=NULL, skipcheck=FALSE) {
   path <- "/R/annotations";
-  annotations <- bioacoustica.call(path);
+  annotations <- bioacoustica::bioacoustica.call(path);
   return (annotations);
 }
 
@@ -54,12 +54,12 @@ bioacoustica.listRecordings <- function(taxon=NULL, children=FALSE) {
   } else {
     path <- paste0("/R/recordings-depth/", taxon);
   }
-  return (bioacoustica.call(path));
+  return (bioacoustica::bioacoustica.call(path));
 }
 
 
 bioacoustica.getAnnotationFile <- function(annotation_id, c) {
-  a <- bioacoustica.getAnnotations(c);
+  a <- bioacoustica::bioacoustica.getAnnotations(c);
   file <- as.character(subset(a, 
                               id==annotation_id,
                               select="file")[1,1]);
@@ -67,15 +67,15 @@ bioacoustica.getAnnotationFile <- function(annotation_id, c) {
   filename <- parts[[1]][7];
   #TODO: CHange to CURL
   download.file(file, destfile=filename);
-  long <- readWave(filename);
+  long <- tuneR::readWave(filename);
   f <- long@samp.rate;
-  wave <- cutw(long, f=f, from=subset(a, id==annotation_id,
+  wave <- seewave::cutw(long, f=f, from=subset(a, id==annotation_id,
                           select="start")[1,1], 
                           to=subset(a, id==annotation_id,select="end")[1,1],
                           method="Wave");
   file.remove(filename);
   nf <- paste0(filename,".",annotation_id,".wav");
-  savewav(wave, f=f, file=nf);
+  seewave::savewav(wave, f=f, file=nf);
   return(nf)
 }
 
@@ -90,25 +90,25 @@ bioacoustica.postComment <- function(path, body, c) {
     'field_start_time[und][0][value]' = '',
     'field_end_time[und][0][value]' = ''
   );
-  drupalr.postComment(bioacoustica.getHandle(), path, body, extra_pars, c)
+  DrupalR::drupalr.postComment(bioacoustica::bioacoustica.getHandle(), path, body, extra_pars, c)
 }
 
 bioacoustica.postAnnotation <- function(path, type, taxon, start, end, c) {
-  type_id <- as.character(subset(bioacoustica.listTypes(), Type==type, select=Term.ID)[1,])
+  type_id <- as.character(subset(bioacoustica::bioacoustica.listTypes(), Type==type, select=Term.ID)[1,])
   extra_pars = list(
     'field_type[und]' = type_id,
     'field_taxonomic_name[und]' = taxon,
     'field_start_time[und][0][value]' = start,
     'field_end_time[und][0][value]' = end
   );
-  drupalr.postComment(bioacoustica.getHandle(), path, '', extra_pars, c);
+  DrupalR::drupalr.postComment(bioacoustica::bioacoustica.getHandle(), path, '', extra_pars, c);
 }
 
 bioacoustica.postFile <- function(upfile, c) {
   pars = list(
-    'files[upload]' = fileUpload(filename=upfile)
+    'files[upload]' = RCurl::fileUpload(filename=upfile)
   );
-  drupalr.postForm(bioacoustica.getHandle(), "/file/add", "file_entity_add_upload", pars, c);
+  DrupalR::drupalr.postForm(bioacoustica.getHandle(), "/file/add", "file_entity_add_upload", pars, c);
 }
 
 

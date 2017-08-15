@@ -13,5 +13,5 @@ bioacoustica.postTrait <- function(taxon_name, c, call_type=NULL, trait=NULL, va
   if (cascade==1) {
     pars <-c(pars, "field_bioacoustic_traits[und][0][field_cascade_down][und]"=1)
   }
-  drupalr.postForm("bio.acousti.ca", "/node/add/bioacoustic-traits", "bioacoustic-traits-node-form", pars=pars, c)
+  DrupalR::drupalr.postForm("bio.acousti.ca", "/node/add/bioacoustic-traits", "bioacoustic-traits-node-form", pars=pars, c)
 }
