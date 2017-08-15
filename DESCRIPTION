@@ -12,6 +12,7 @@ Depends:
   foreach,
   dplyr,
   seewave,
-  tuneR
+  tuneR,
+  RCurl
 Remotes:
   edwbaker/DrupalR
