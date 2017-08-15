@@ -10,7 +10,7 @@ bioacoustica.collectionDownload <- function(collectionID, c) {
   } else {
     collection <- collectionID
   }
-  bioacosutica::bioacoustica.mkdir("bioacoustica_data")
+  bioacoustica::bioacoustica.mkdir("bioacoustica_data")
   
   downloadData <- function(data, name) {
     url <- data["recording_url"]
