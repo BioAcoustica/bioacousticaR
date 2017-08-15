@@ -8,12 +8,8 @@ Maintainer: Ed Baker <edwbaker@gmail.com>
 Description: More about what it does (maybe more than one line)
 License: What license is it under?
 Depends:
-  RCurl,
   DrupalR,
-  xml2,
   foreach,
-  tuneR,
-  seewave,
   dplyr
 Remotes:
   edwbaker/DrupalR
