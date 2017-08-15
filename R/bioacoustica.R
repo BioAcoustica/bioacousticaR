@@ -81,10 +81,6 @@ bioacoustica.getAnnotationFile <- function(annotation_id, c) {
   return(nf)
 }
 
-bioacoustica.getWaveFile <- function(url, start=NULL, end = NULL) {
-  
-}
-
 bioacoustica.postComment <- function(path, body, c) {
   extra_pars = list(
     'field_type[und]' = '_none',

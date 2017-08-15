@@ -1,27 +1,25 @@
-\name{bioacoustica.call}
-\alias{bioacoustica.call}
+\name{bioacoustica.listCollections}
+\alias{bioacoustica.listCollections}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Helper function to request data from BioAcoustica.
+Function to list collections present on BioAcoustica
 }
 \description{
-This function is used (primarily but not exclusively by other package functions)
-to download a HTML of other object from BioAcoustica.
+This function is used to list collections available on BioAcoustica.
 }
 \usage{
-bioacoustica.call(path)
+bioacoustica.listCollections(c)
 }
 %- maybe also 'usage' for other objects documented here.
-\arguments{
-  \item{path}{
-  The path of the content to retrieve.
-  }
-}
+%\arguments{
+%  Optionally provide an authenticated CURL handler.
+%  }
+%}
 %\details{
 %%  ~~ If necessary, more details than the description above ~~
 %}
 \value{
-A string containing the HTML or other content retrieved.
+String of CSV data.
 }
 %\references{
 %% ~put references to the literature/web site here ~
@@ -44,10 +42,10 @@ Ed Baker
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function(path) {
-  message(paste0(bioacoustica.getHandle(), path));
-  download <- DrupalR::drupalr.get(bioacoustica.getHandle(), path);
-  return (read.csv(text = download));
+function() {
+  path <- "/R/collections";
+  collections <- bioacoustica::bioacoustica.call(path);
+  return (collections);
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

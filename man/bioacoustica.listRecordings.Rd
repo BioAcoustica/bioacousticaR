@@ -1,27 +1,29 @@
-\name{bioacoustica.call}
-\alias{bioacoustica.call}
-%- Also NEED an '\alias' for EACH other topic documented here.
+\name{bioacoustica.listRecordings}
+\alias{bioacoustica.listRecordings}
+
 \title{
-Helper function to request data from BioAcoustica.
+List Recordings
 }
 \description{
-This function is used (primarily but not exclusively by other package functions)
-to download a HTML of other object from BioAcoustica.
+Function to list recordings available on BioAcoustica, optionally filtered by taxon.
 }
 \usage{
-bioacoustica.call(path)
+bioacoustica.listRecordings(taxon=NULL, children=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{path}{
-  The path of the content to retrieve.
+  \item{taxon}{
+  The BioAcoustica taxon ID to filter by.
+  }
+  \item{children}{
+  If set to TRUE recordings of taxonomic children of the taxon will also be returned.
   }
 }
 %\details{
 %%  ~~ If necessary, more details than the description above ~~
 %}
 \value{
-A string containing the HTML or other content retrieved.
+String of CSV of returned data.
 }
 %\references{
 %% ~put references to the literature/web site here ~
@@ -44,13 +46,21 @@ Ed Baker
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function(path) {
-  message(paste0(bioacoustica.getHandle(), path));
-  download <- DrupalR::drupalr.get(bioacoustica.getHandle(), path);
-  return (read.csv(text = download));
+function(taxon=NULL, children=FALSE) {
+  if (is.null(taxon)) {
+    taxon <- "";
+  } else {
+    taxon <- sub(" ", "+", taxon)
+  }
+  if(!children) {
+    path <- paste0("/R/recordings/", taxon);
+  } else {
+    path <- paste0("/R/recordings-depth/", taxon);
+  }
+  return (bioacoustica::bioacoustica.call(path));
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-%\keyword{ ~kwd1 }
+%\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -1,27 +1,26 @@
-\name{bioacoustica.call}
-\alias{bioacoustica.call}
+\name{bioacoustica.listTraits}
+\alias{bioacoustica.listTraits}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Helper function to request data from BioAcoustica.
+Function to list traits present on BioAcoustica
 }
 \description{
-This function is used (primarily but not exclusively by other package functions)
-to download a HTML of other object from BioAcoustica.
+This function is used to list the trait data available on BioAcoustica.
 }
 \usage{
-bioacoustica.call(path)
+bioacoustica.listTraits(c)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{path}{
-  The path of the content to retrieve.
+  \item{c}{
+  Optionally provide an authenticated CURL handler.
   }
 }
 %\details{
 %%  ~~ If necessary, more details than the description above ~~
 %}
 \value{
-A string containing the HTML or other content retrieved.
+String of CSV data.
 }
 %\references{
 %% ~put references to the literature/web site here ~
@@ -44,10 +43,11 @@ Ed Baker
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function(path) {
-  message(paste0(bioacoustica.getHandle(), path));
-  download <- DrupalR::drupalr.get(bioacoustica.getHandle(), path);
-  return (read.csv(text = download));
+function(c) {
+  message("Traits file is large and generated on cron, it may lag behind website data.")
+  path <- "/files/traits/bioacoustic-traits.txt";
+  ba_traits <- bioacoustica::bioacoustica.call(path);
+  return (ba_traits);
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
