@@ -19,14 +19,14 @@ bioacoustica.listTypes <- function() {
 }
 
 bioacoustica.listTaxa <- function() {
-  path <- "/R/taxa";
+  path <- "/files/R/taxa.txt";
   taxa <- bioacoustica::bioacoustica.call(path);
   return (taxa);
 }
 
 bioacoustica.listTraits <- function(c) {
   message("Traits file is large and generated on cron, it may lag behind website data.")
-  path <- "/R/bioacoustic_traits.txt";
+  path <- "/files/R/bioacoustic_traits.txt";
   ba_traits <- bioacoustica::bioacoustica.call(path);
   return (ba_traits);
 }
