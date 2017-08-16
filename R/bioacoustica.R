@@ -9,7 +9,7 @@ bioacoustica.authenticate <- function(username, password) {
 bioacoustica.call <- function(path) {
   message(paste0(bioacoustica.getHandle(), path));
   download <- DrupalR::drupalr.get(bioacoustica.getHandle(), path);
-  return (read.csv(text = download));
+  return (read.csv(text = download, fileEncoding = "utf16"));
 }
 
 bioacoustica.listTypes <- function() {
