@@ -26,7 +26,7 @@ bioacoustica.listTaxa <- function() {
 
 bioacoustica.listTraits <- function(c) {
   message("Traits file is large and generated on cron, it may lag behind website data.")
-  path <- "/files/traits/bioacoustic-traits.txt";
+  path <- "/files/traits/bioacoustic_traits.txt";
   ba_traits <- bioacoustica::bioacoustica.call(path);
   return (ba_traits);
 }
