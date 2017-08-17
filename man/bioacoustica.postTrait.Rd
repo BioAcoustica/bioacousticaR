@@ -8,7 +8,7 @@ Post trait data to BioAcoustica
 A function to post bioacoustic traits to BioAcoustica.
 }
 \usage{
-bioacoustica.postTrait(taxon_name, c, call_type=NULL, trait=NULL, value=NULL, temp=NULL, sex=NULL, inference_notes=NULL, cascade=0)
+bioacoustica.postTrait(taxon_name, c, call_type="", trait="", value="", temp="", sex="", inference_notes="", cascade=0)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
