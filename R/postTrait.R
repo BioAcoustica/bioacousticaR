@@ -1,6 +1,6 @@
 bioacoustica.postTrait <- function(taxon_name, c, call_type="", trait="", value="", temp="", sex="", inference_notes="", cascade=0){
   pars=list(
-    "group_audience[und][]"=2,
+    "group_audience[und][]"=1,
     "group_content_access[und]"=2,
     "field_taxonomic_name[und]"=taxon_name,
     "field_bioacoustic_traits[und][0][field_call_type][und][0][value]"=call_type,
