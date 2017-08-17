@@ -1,4 +1,4 @@
-bioacoustica.postTrait <- function(taxon_name, c, call_type=NULL, trait=NULL, value=NULL, temp=NULL, sex=NULL, inference_notes=NULL, cascade=0){
+bioacoustica.postTrait <- function(taxon_name, c, call_type="", trait="", value="", temp="", sex="", inference_notes="", cascade=0){
   pars=list(
     "group_audience[und][]"=2,
     "group_content_access[und]"=2,
