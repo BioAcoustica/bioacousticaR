@@ -9,7 +9,7 @@ bioacoustica.authenticate <- function(username, password) {
 bioacoustica.call <- function(path) {
   message(paste0(bioacoustica.getHandle(), path));
   download <- DrupalR::drupalr.get(bioacoustica.getHandle(), path);
-  return (read.csv(text = download, fileEncoding = "utf16"));
+  return (read.csv(text = download, fileEncoding = "utf8"));
 }
 
 bioacoustica.listTypes <- function() {
@@ -59,16 +59,15 @@ bioacoustica.listRecordings <- function(taxon=NULL, children=FALSE) {
   return (bioacoustica::bioacoustica.call(path));
 }
 
-bioacoustica.getAllAnnotationFiles <- function(c) {
-  a <- bioacoustica::bioacoustica.getAnnotations(c);
-  a <- a$id
+bioacoustica.getAllAnnotationFiles <- function(c, data=bioacoustica::bioacoustica.getAnnotations(c)) {
+  a <- data$id
   for (i in 1:length(a)) {
-    bioacoustica::bioacoustica.getAnnotationFile(a[[i]], c)
+    bioacoustica::bioacoustica.getAnnotationFile(a[[i]], c, data)
   }
 }
 
-bioacoustica.getAnnotationFile <- function(annotation_id, c) {
-  a <- bioacoustica::bioacoustica.getAnnotations(c);
+bioacoustica.getAnnotationFile <- function(annotation_id, c, data) {
+  a <- data
   file <- as.character(subset(a, 
                               a$id==annotation_id,
                               select="file")[1,1]);
@@ -82,7 +81,20 @@ bioacoustica.getAnnotationFile <- function(annotation_id, c) {
   
   #TODO: Change to CURL
   download.file(file, destfile=filename);
-  long <- tuneR::readWave(filename);
+  
+  type <- NULL
+  if (endsWith(filename, "mp3")) {
+    long <- tuneR::readMP3(filename)
+    type <- "MP3"
+  }
+  if (endsWith(filename, "wav")) {
+    long <- tuneR::readWave(filename);
+    type <- "WAVE"
+  }
+  if (is.null(type)) {
+    return()
+  }
+  
   f <- long@samp.rate;
   wave <- seewave::cutw(long, f=f, from=subset(a, id==annotation_id,
                                                select="start")[1,1], 

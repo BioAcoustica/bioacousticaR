@@ -8,7 +8,7 @@ Downloads an annotated section of a recording
 This fucntion wil download and trim a recording to match an annotated section of recording on BioAcoustica.
 }
 \usage{
-bioacoustica.getAnnotationFile(annotation_id, c)
+bioacoustica.getAnnotationFile(annotation_id, c, data=bioacoustica::bioacoustica.getAnnotations(c))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -17,6 +17,9 @@ bioacoustica.getAnnotationFile(annotation_id, c)
   }
   \item{c}{
   An authenticated CURL handle.
+  }
+  \item{data}{
+  Annotation data. Previosuly downloaded annotation downloads can be passed to the function to prevent multiple calls to BioAcoustica which may cause access to be tmeporarily suspended. If not provided the annotation data will be downloaded from BioAcoustica.
   }
 }
 %\details{
