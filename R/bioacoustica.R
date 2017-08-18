@@ -75,8 +75,8 @@ bioacoustica.getAnnotationFile <- function(annotation_id, c) {
   parts <- strsplit(file, "/");
   filename <- URLdecode(parts[[1]][7]);
   nf <- paste0(filename,".",annotation_id,".wav");
-  
-  if(file.exists(c("./", nf))) {
+  nfp <- c("./", nf)
+  if(file.exists(nfp)) {
     message(c("File already exists: ", nf))
     return()
   }
