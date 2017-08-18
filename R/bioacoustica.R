@@ -63,7 +63,7 @@ bioacoustica.getAllAnnotationFiles <- function(c) {
   a <- bioacoustica::bioacoustica.getAnnotations(c);
   a <- a$id
   for (a in 1:length(a)) {
-    bioacoustica::bioacoustica.getAnnotationFile([[i]])
+    bioacoustica::bioacoustica.getAnnotationFile(a[[i]])
   }
 }
 
