@@ -62,7 +62,7 @@ bioacoustica.listRecordings <- function(taxon=NULL, children=FALSE) {
 bioacoustica.getAllAnnotationFiles <- function(c) {
   a <- bioacoustica::bioacoustica.getAnnotations(c);
   a <- a$id
-  for (a in 1:length(a)) {
+  for (i in 1:length(a)) {
     bioacoustica::bioacoustica.getAnnotationFile(a[[i]])
   }
 }
@@ -76,7 +76,7 @@ bioacoustica.getAnnotationFile <- function(annotation_id, c) {
   filename <- URLdecode(parts[[1]][7]);
   nf <- paste0(filename,".",annotation_id,".wav");
   
-  if(file.exists(c("./",nf))) {
+  if(file.exists(c("./", nf))) {
     message(c("File already exists: ", nf))
     return()
   }
