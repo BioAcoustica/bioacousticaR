@@ -59,6 +59,13 @@ bioacoustica.listRecordings <- function(taxon=NULL, children=FALSE) {
   return (bioacoustica::bioacoustica.call(path));
 }
 
+bioacoustica.getAllAnnotationFiles <- function(c) {
+  a <- bioacoustica::bioacoustica.getAnnotations(c);
+  a <- a$id
+  for (a in 1:length(a)) {
+    bioacoustica::bioacoustica.getAnnotationFile([[i]])
+  }
+}
 
 bioacoustica.getAnnotationFile <- function(annotation_id, c) {
   a <- bioacoustica::bioacoustica.getAnnotations(c);
@@ -66,7 +73,7 @@ bioacoustica.getAnnotationFile <- function(annotation_id, c) {
                               a$id==annotation_id,
                               select="file")[1,1]);
   parts <- strsplit(file, "/");
-  filename <- parts[[1]][7];
+  filename <- URLdecode(parts[[1]][7]);
   #TODO: CHange to CURL
   download.file(file, destfile=filename);
   long <- tuneR::readWave(filename);
