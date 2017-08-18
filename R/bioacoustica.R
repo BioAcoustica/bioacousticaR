@@ -74,7 +74,14 @@ bioacoustica.getAnnotationFile <- function(annotation_id, c) {
                               select="file")[1,1]);
   parts <- strsplit(file, "/");
   filename <- URLdecode(parts[[1]][7]);
-  #TODO: CHange to CURL
+  nf <- paste0(filename,".",annotation_id,".wav");
+  
+  if(file.exists(c("./",nf))) {
+    message(c("File already exists: ", nf))
+    return()
+  }
+  
+  #TODO: Change to CURL
   download.file(file, destfile=filename);
   long <- tuneR::readWave(filename);
   f <- long@samp.rate;
@@ -83,7 +90,6 @@ bioacoustica.getAnnotationFile <- function(annotation_id, c) {
                           to=subset(a, id==annotation_id,select="end")[1,1],
                           method="Wave");
   file.remove(filename);
-  nf <- paste0(filename,".",annotation_id,".wav");
   seewave::savewav(wave, f=f, file=nf);
   return(nf)
 }
