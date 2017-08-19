@@ -8,13 +8,16 @@ Download all annotated segments from BioAcoustica
 Downloads all annotated sections of sound recording from BioAcoustica into the ./data directory.
 }
 \usage{
-bioacoustica.getAllAnnotationFiles(c)
+bioacoustica.getAllAnnotationFiles(c, data=bioacoustica::bioacoustica.getAnnotations(c))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{c}{
-An authenticated CURL handle.
-}
+    An authenticated CURL handle.
+  }
+  \item{data}{
+  A data frame from bioacoustica.getAnnotations.
+  }
 }
 %\details{
 %%  ~~ If necessary, more details than the description above ~~
