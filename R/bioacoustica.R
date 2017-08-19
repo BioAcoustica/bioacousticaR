@@ -66,7 +66,7 @@ bioacoustica.getAllAnnotationFiles <- function(c, data=bioacoustica::bioacoustic
   }
 }
 
-bioacoustica.getAnnotationFile <- function(annotation_id, c, data) {
+bioacoustica.getAnnotationFile <- function(annotation_id, c, data=bioacoustica::bioacoustica.getAnnotations(c) {
   a <- data
   file <- as.character(subset(a, 
                               a$id==annotation_id,
