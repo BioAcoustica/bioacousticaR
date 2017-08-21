@@ -8,7 +8,7 @@ Post trait data to BioAcoustica
 A function to post bioacoustic traits to BioAcoustica.
 }
 \usage{
-bioacoustica.postTrait(taxon_name, c, call_type="", trait="", value="", temp="", sex="", inference_notes="", cascade=0)
+bioacoustica.postTrait(taxon_name, c, call_type="", trait="", value="", temp="", sex="", annotation_id="", inference_notes="", cascade=0)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -32,6 +32,9 @@ bioacoustica.postTrait(taxon_name, c, call_type="", trait="", value="", temp="",
   }
   \item{sex}{
   The sex of the individual the trait applies to.
+  }
+  \item{annotation_id}{
+  The annotation ID used to calculate this trait, if applicable.
   }
   \item{inference_notes}{
   String describing how the trait was infered, if applicable.

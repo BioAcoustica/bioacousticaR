@@ -1,4 +1,4 @@
-bioacoustica.postTrait <- function(taxon_name, c, call_type="", trait="", value="", temp="", sex="", inference_notes="", cascade=0){
+bioacoustica.postTrait <- function(taxon_name, c, call_type="", trait="", value="", temp="", sex="", annotation_id="", inference_notes="", cascade=0){
   pars=list(
     "group_audience[und][]"=1,
     "group_content_access[und]"=2,
@@ -8,6 +8,7 @@ bioacoustica.postTrait <- function(taxon_name, c, call_type="", trait="", value=
     "field_bioacoustic_traits[und][0][field_value][und][0][value]"=value,
     "field_bioacoustic_traits[und][0][field_temperature][und][0][value]"=temp,
     "field_bioacoustic_traits[und][0][field_sex_trait][und][0][value]"=sex,
+    "field_bioacoustic_traits[und][0][field_annotation_id][und][0][value]"=annotation_id,
     "field_inference_notes[und][0][value]"=inference_notes
   )
   if (cascade==1) {
